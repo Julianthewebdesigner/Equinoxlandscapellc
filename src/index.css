@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-green: #2A6644;
+  --color-brand-gold: #C9A84C;
+  --color-brand-gold-light: #E0C070;
+  --color-brand-charcoal: #111111;
+  --color-brand-black: #0A0A0A;
+
+  --font-display: "DM Sans", sans-serif;
+  --font-serif: "Oswald", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-black text-white font-display antialiased;
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 40px rgba(201, 168, 76, 0.5);
+  }
+
+  .bg-gradient-nature {
+    background: radial-gradient(circle at top right, rgba(42, 102, 68, 0.6), transparent),
+                radial-gradient(circle at bottom left, rgba(201, 168, 76, 0.06), transparent);
+  }
+
+  /* Continuous gold glow pulse for primary CTA button */
+  .btn-glow-pulse {
+    box-shadow:
+      0 0 0 1px rgba(201, 168, 76, 0.6),
+      0 0 16px rgba(201, 168, 76, 0.5),
+      0 0 40px rgba(201, 168, 76, 0.25);
+    animation: glow-pulse 2.2s ease-in-out infinite;
+  }
+
+  .btn-glow-pulse:hover {
+    box-shadow:
+      0 0 0 1px rgba(201, 168, 76, 0.9),
+      0 0 24px rgba(201, 168, 76, 0.8),
+      0 0 60px rgba(201, 168, 76, 0.45),
+      0 0 100px rgba(201, 168, 76, 0.15);
+    animation: none;
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% {
+      box-shadow:
+        0 0 0 1px rgba(201, 168, 76, 0.5),
+        0 0 14px rgba(201, 168, 76, 0.4),
+        0 0 32px rgba(201, 168, 76, 0.2);
+    }
+    50% {
+      box-shadow:
+        0 0 0 1px rgba(201, 168, 76, 0.8),
+        0 0 22px rgba(201, 168, 76, 0.65),
+        0 0 55px rgba(201, 168, 76, 0.35),
+        0 0 90px rgba(201, 168, 76, 0.12);
+    }
+  }
+
+  .beam-hover {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .beam-hover::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg, transparent, rgba(201, 168, 76, 0.15), transparent 30%);
+    animation: rotate-beam 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .beam-hover:hover::after {
+    opacity: 1;
+  }
+
+  @keyframes rotate-beam {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+}
