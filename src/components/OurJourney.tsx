@@ -267,6 +267,16 @@ function TimelineCard({
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-gold/60 to-transparent" />
         )}
 
+        {index === 0 && (
+          <div className="flex items-center gap-3 mb-5">
+            <img
+              src="/images/IMG_4870.JPG"
+              alt="Julian Aguilar"
+              className="w-10 h-10 rounded-full object-cover object-top border border-brand-gold/30 flex-shrink-0"
+            />
+            <span className="text-[10px] text-white/30 tracking-widest uppercase">Julian Aguilar · Founder</span>
+          </div>
+        )}
         <span
           className={`text-[10px] uppercase tracking-[0.25em] font-semibold ${
             m.isFeatured ? "text-brand-gold/70" : "text-white/25"
