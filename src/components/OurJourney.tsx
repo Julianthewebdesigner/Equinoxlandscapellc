@@ -326,13 +326,15 @@ function ClosingCard() {
             <span className="text-brand-gold">transparency</span> to
             landscaping in the Seattle and Kent, Washington area."
           </p>
-          <div className="mt-10 flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-brand-gold/20 border border-brand-gold/40 flex items-center justify-center">
-              <span className="text-brand-gold text-xs font-bold">E</span>
-            </div>
+          <div className="mt-10 flex items-center gap-4">
+            <img
+              src="/images/IMG_4870.JPG"
+              alt="Julian Aguilar – Founder of Equinox Landscape LLC"
+              className="w-14 h-14 rounded-full object-cover object-top border-2 border-brand-gold/40 shadow-[0_0_16px_rgba(201,168,76,0.2)] flex-shrink-0"
+            />
             <div>
-              <p className="text-sm font-bold text-white/80">Equinox Landscape LLC</p>
-              <p className="text-[11px] text-white/30 tracking-widest uppercase">Seattle · Kent, WA</p>
+              <p className="text-sm font-bold text-white/80">Julian Aguilar</p>
+              <p className="text-[11px] text-white/30 tracking-widest uppercase">Founder · Equinox Landscape LLC</p>
             </div>
           </div>
         </div>

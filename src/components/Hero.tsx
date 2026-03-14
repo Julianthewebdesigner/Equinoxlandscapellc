@@ -103,15 +103,15 @@ export default function Hero() {
               className="flex flex-wrap gap-4 items-center"
             >
               <motion.a
-                href="#contact"
+                href="#estimate"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center gap-2 bg-white text-brand-black font-bold px-8 py-4 rounded-full btn-glow-pulse transition-all"
               >
-                Get Your Free Estimate <ArrowRight size={18} />
+                Get Instant Estimate <ArrowRight size={18} />
               </motion.a>
               <motion.a
-                href="#projects"
+                href="#services"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 className="inline-flex items-center gap-2 border border-white/20 hover:border-brand-gold/50 text-white hover:text-brand-gold font-semibold px-8 py-4 rounded-full backdrop-blur-sm transition-all"

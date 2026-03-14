@@ -1,5 +1,7 @@
 import { motion } from "motion/react";
-import { Phone, Mail, MapPin, Instagram, Facebook } from "lucide-react";
+import { Phone, Mail, MapPin, Instagram } from "lucide-react";
+import { Link } from "react-router-dom";
+import { services } from "../data/services";
 
 export default function Footer() {
   const serviceAreas = [
@@ -10,7 +12,7 @@ export default function Footer() {
   return (
     <footer className="bg-brand-black border-t border-white/10 pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           {/* Brand Column */}
           <div className="space-y-6">
             <div className="flex items-center gap-2">
@@ -25,11 +27,8 @@ export default function Footer() {
               Grounded in tradition, driven by excellence.
             </p>
             <div className="flex gap-4">
-              <a href="https://www.instagram.com/equinoxlandscapellc" target="_blank" rel="noopener noreferrer" aria-label="Equinox Landscape on Instagram" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-brand-gold hover:text-brand-gold transition-colors">
+              <a href="https://www.instagram.com/equinoxlandscapellc/" target="_blank" rel="noopener noreferrer" aria-label="Equinox Landscape on Instagram" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-brand-gold hover:text-brand-gold transition-colors">
                 <Instagram size={18} />
-              </a>
-              <a href="https://www.facebook.com/equinoxlandscapellc" target="_blank" rel="noopener noreferrer" aria-label="Equinox Landscape on Facebook" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-brand-gold hover:text-brand-gold transition-colors">
-                <Facebook size={18} />
               </a>
             </div>
           </div>
@@ -47,14 +46,31 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Services Links */}
+          <div>
+            <h4 className="text-brand-gold font-semibold mb-6 uppercase tracking-wider text-sm">Our Services</h4>
+            <ul className="space-y-3">
+              {services.map((service) => (
+                <li key={service.slug}>
+                  <Link
+                    to={`/services/${service.slug}`}
+                    className="text-white/60 hover:text-white transition-colors"
+                  >
+                    {service.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Quick Links */}
           <div>
             <h4 className="text-brand-gold font-semibold mb-6 uppercase tracking-wider text-sm">Company</h4>
             <ul className="space-y-3">
-              <li><a href="#about" className="text-white/60 hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#services" className="text-white/60 hover:text-white transition-colors">Our Services</a></li>
-              <li><a href="#projects" className="text-white/60 hover:text-white transition-colors">Recent Projects</a></li>
-              <li><a href="#contact" className="text-white/60 hover:text-white transition-colors">Contact</a></li>
+              <li><a href="/#about" className="text-white/60 hover:text-white transition-colors">About Us</a></li>
+              <li><a href="/#projects" className="text-white/60 hover:text-white transition-colors">Recent Projects</a></li>
+              <li><a href="/#faq" className="text-white/60 hover:text-white transition-colors">FAQ</a></li>
+              <li><Link to="/contact" className="text-white/60 hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>
 

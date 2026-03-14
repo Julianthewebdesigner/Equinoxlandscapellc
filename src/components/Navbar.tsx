@@ -1,10 +1,14 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
-import { Phone } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Phone, ChevronDown } from "lucide-react";
+import { services } from "../data/services";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -15,15 +19,16 @@ export default function Navbar() {
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [isMobileMenuOpen]);
 
   const navLinks = [
-    { name: "Services", href: "#services", number: "01" },
-    { name: "Projects", href: "#projects", number: "02" },
-    { name: "Gallery", href: "#gallery", number: "03" },
-    { name: "FAQ", href: "#faq", number: "04" },
-    { name: "Contact", href: "#contact", number: "05" },
+    { name: "Projects", href: "/#projects", number: "02" },
+    { name: "Gallery", href: "/#gallery", number: "03" },
+    { name: "FAQ", href: "/#faq", number: "04" },
+    { name: "Contact", href: "/contact", number: "05", isPage: true },
   ];
 
   return (
@@ -37,7 +42,7 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3 group relative z-50">
+          <Link to="/" className="flex items-center gap-3 group relative z-50">
             <img
               src="/images/hero/Transparent-Equinox-logo.png"
               alt="Equinox Landscape LLC"
@@ -51,35 +56,110 @@ export default function Navbar() {
                 LLC · Seattle, WA
               </span>
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Nav — visible lg+ */}
           <div className="hidden lg:flex items-center gap-10">
             <div className="flex items-center gap-8">
-              {navLinks.map((link) => (
+
+              {/* Services dropdown */}
+              <div
+                className="relative"
+                onMouseEnter={() => setServicesOpen(true)}
+                onMouseLeave={() => setServicesOpen(false)}
+              >
                 <a
-                  key={link.name}
-                  href={link.href}
-                  className="text-sm font-medium text-white/70 hover:text-brand-gold transition-colors relative group"
+                  href="/#services"
+                  className="flex items-center gap-1 text-sm font-medium text-white/70 hover:text-brand-gold transition-colors relative group"
                 >
-                  {link.name}
+                  Services
+                  <ChevronDown
+                    size={13}
+                    className={`transition-transform duration-300 ${servicesOpen ? "rotate-180 text-brand-gold" : ""}`}
+                  />
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all group-hover:w-full" />
                 </a>
-              ))}
+
+                <AnimatePresence>
+                  {servicesOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.97 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 6, scale: 0.97 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="absolute top-full left-0 mt-3 w-60 bg-brand-charcoal/95 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
+                    >
+                      {/* Top gold accent */}
+                      <div className="h-[2px] bg-gradient-to-r from-brand-gold/60 via-brand-gold/30 to-transparent" />
+
+                      <div className="py-2">
+                        {services.map((service) => (
+                          <Link
+                            key={service.slug}
+                            to={`/services/${service.slug}`}
+                            onClick={() => setServicesOpen(false)}
+                            className="flex items-center justify-between px-5 py-3 text-sm text-white/65 hover:text-white hover:bg-white/5 transition-all duration-200 group/item"
+                          >
+                            <span>{service.title}</span>
+                            <span className="text-brand-gold/0 group-hover/item:text-brand-gold/70 transition-colors text-xs">→</span>
+                          </Link>
+                        ))}
+                      </div>
+
+                      <div className="border-t border-white/6 px-5 py-3">
+                        <a
+                          href="/#services"
+                          className="text-xs text-brand-gold/60 hover:text-brand-gold transition-colors font-semibold tracking-widest uppercase"
+                        >
+                          View All Services
+                        </a>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {/* Other nav links */}
+              {navLinks.map((link) =>
+                link.isPage ? (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    className="text-sm font-medium text-white/70 hover:text-brand-gold transition-colors relative group"
+                  >
+                    {link.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all group-hover:w-full" />
+                  </Link>
+                ) : (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    className="text-sm font-medium text-white/70 hover:text-brand-gold transition-colors relative group"
+                  >
+                    {link.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-gold transition-all group-hover:w-full" />
+                  </a>
+                )
+              )}
             </div>
+
             <div className="flex items-center gap-6">
-              <a href="tel:+12064188749" className="flex items-center gap-2 text-white/60 hover:text-white transition-colors">
+              <a
+                href="tel:+12064188749"
+                className="flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+              >
                 <Phone size={16} className="text-brand-gold" />
                 <span className="text-sm font-bold">(206) 418-8749</span>
               </a>
-              <motion.a
-                href="#contact"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-brand-gold text-brand-black px-6 py-2.5 rounded-full text-sm font-bold shadow-[0_0_15px_rgba(212,175,55,0.2)] hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all"
-              >
-                GET A QUOTE
-              </motion.a>
+              <Link to="/contact">
+                <motion.span
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-block bg-brand-gold text-brand-black px-6 py-2.5 rounded-full text-sm font-bold shadow-[0_0_15px_rgba(212,175,55,0.2)] hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all cursor-pointer"
+                >
+                  GET A QUOTE
+                </motion.span>
+              </Link>
             </div>
           </div>
 
@@ -147,9 +227,72 @@ export default function Navbar() {
             />
 
             {/* Menu Content */}
-            <div className="relative h-full flex flex-col justify-between px-8 pt-28 pb-12">
+            <div className="relative h-full flex flex-col justify-between px-8 pt-28 pb-12 overflow-y-auto">
               {/* Nav Links */}
               <nav className="flex flex-col">
+                {/* Services — expandable */}
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.45, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  className="group"
+                >
+                  <button
+                    onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                    className="w-full flex items-baseline gap-4 py-5 border-b border-white/[0.06] group-hover:border-brand-gold/20 transition-colors duration-300"
+                  >
+                    <span className="text-[10px] tracking-[0.2em] text-brand-gold/50 font-semibold w-5">
+                      01
+                    </span>
+                    <span className="text-3xl font-bold tracking-tight text-white/80 group-hover:text-white transition-colors duration-300 leading-none">
+                      Services
+                    </span>
+                    <motion.span
+                      animate={{ rotate: mobileServicesOpen ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="ml-auto text-white/30"
+                    >
+                      <ChevronDown size={18} />
+                    </motion.span>
+                  </button>
+
+                  {/* Service sub-links */}
+                  <AnimatePresence>
+                    {mobileServicesOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pl-9 py-3 flex flex-col gap-1 border-b border-white/[0.06]">
+                          {services.map((service, si) => (
+                            <Link
+                              key={service.slug}
+                              to={`/services/${service.slug}`}
+                              onClick={() => setIsMobileMenuOpen(false)}
+                              className="flex items-center justify-between py-2.5 text-white/55 hover:text-brand-gold transition-colors duration-200 text-base font-semibold group/sub"
+                            >
+                              <span>{service.title}</span>
+                              <span className="text-brand-gold/0 group-hover/sub:text-brand-gold/60 transition-colors text-sm">→</span>
+                            </Link>
+                          ))}
+                          <a
+                            href="/#services"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="py-2.5 text-brand-gold/50 hover:text-brand-gold transition-colors text-xs tracking-widest uppercase font-bold mt-1"
+                          >
+                            View All Services
+                          </a>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+
+                {/* Other links */}
                 {navLinks.map((link, i) => (
                   <motion.div
                     key={link.name}
@@ -158,29 +301,47 @@ export default function Navbar() {
                     exit={{ opacity: 0, x: -20 }}
                     transition={{
                       duration: 0.45,
-                      delay: 0.1 + i * 0.07,
+                      delay: 0.17 + i * 0.07,
                       ease: [0.25, 0.46, 0.45, 0.94],
                     }}
                     className="group"
                   >
-                    <a
-                      href={link.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className="flex items-baseline gap-4 py-5 border-b border-white/[0.06] group-hover:border-brand-gold/20 transition-colors duration-300"
-                    >
-                      <span className="text-[10px] tracking-[0.2em] text-brand-gold/50 font-semibold w-5 group-hover:text-brand-gold transition-colors duration-300">
-                        {link.number}
-                      </span>
-                      <span className="text-3xl font-bold tracking-tight text-white/80 group-hover:text-white transition-colors duration-300 leading-none">
-                        {link.name}
-                      </span>
-                      <motion.span
-                        className="ml-auto text-brand-gold/0 group-hover:text-brand-gold/80 text-lg transition-colors duration-300"
-                        aria-hidden
+                    {link.isPage ? (
+                      <Link
+                        to={link.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="flex items-baseline gap-4 py-5 border-b border-white/[0.06] group-hover:border-brand-gold/20 transition-colors duration-300"
                       >
-                        →
-                      </motion.span>
-                    </a>
+                        <span className="text-[10px] tracking-[0.2em] text-brand-gold/50 font-semibold w-5 group-hover:text-brand-gold transition-colors duration-300">
+                          {link.number}
+                        </span>
+                        <span className="text-3xl font-bold tracking-tight text-white/80 group-hover:text-white transition-colors duration-300 leading-none">
+                          {link.name}
+                        </span>
+                        <span className="ml-auto text-brand-gold/0 group-hover:text-brand-gold/80 text-lg transition-colors duration-300">
+                          →
+                        </span>
+                      </Link>
+                    ) : (
+                      <a
+                        href={link.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="flex items-baseline gap-4 py-5 border-b border-white/[0.06] group-hover:border-brand-gold/20 transition-colors duration-300"
+                      >
+                        <span className="text-[10px] tracking-[0.2em] text-brand-gold/50 font-semibold w-5 group-hover:text-brand-gold transition-colors duration-300">
+                          {link.number}
+                        </span>
+                        <span className="text-3xl font-bold tracking-tight text-white/80 group-hover:text-white transition-colors duration-300 leading-none">
+                          {link.name}
+                        </span>
+                        <motion.span
+                          className="ml-auto text-brand-gold/0 group-hover:text-brand-gold/80 text-lg transition-colors duration-300"
+                          aria-hidden
+                        >
+                          →
+                        </motion.span>
+                      </a>
+                    )}
                   </motion.div>
                 ))}
               </nav>
@@ -190,8 +351,8 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.45, delay: 0.45, ease: "easeOut" }}
-                className="flex flex-col gap-5"
+                transition={{ duration: 0.45, delay: 0.5, ease: "easeOut" }}
+                className="flex flex-col gap-5 mt-8"
               >
                 {/* Divider */}
                 <div className="h-[1px] bg-gradient-to-r from-brand-gold/30 via-brand-gold/10 to-transparent" />
@@ -215,14 +376,13 @@ export default function Navbar() {
                 </a>
 
                 {/* CTA Button */}
-                <motion.a
-                  href="#contact"
-                  whileTap={{ scale: 0.97 }}
+                <Link
+                  to="/contact"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="w-full py-4 rounded-2xl bg-brand-gold text-brand-black font-bold text-sm tracking-widest uppercase shadow-[0_0_30px_rgba(201,168,76,0.25)] hover:shadow-[0_0_50px_rgba(201,168,76,0.4)] transition-all duration-300 text-center block"
                 >
                   Get a Free Quote
-                </motion.a>
+                </Link>
 
                 {/* Tagline */}
                 <p className="text-center text-[11px] uppercase tracking-[0.25em] text-white/20 font-semibold">

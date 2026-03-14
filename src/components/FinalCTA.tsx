@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import { ArrowRight, Phone, Mail, MessageSquare } from "lucide-react";
 
 export default function FinalCTA() {
@@ -24,14 +25,15 @@ export default function FinalCTA() {
           </p>
 
           <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-12">
-            <motion.a
-              href="mailto:Equinoxlandscapellc@gmail.com?subject=Consultation%20Request&body=Hi%20Equinox%20Landscape%2C%20I%27d%20like%20to%20request%20a%20consultation."
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-full md:w-auto bg-brand-gold text-brand-black px-10 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(212,175,55,0.3)]"
-            >
-              REQUEST A CONSULTATION <ArrowRight size={20} />
-            </motion.a>
+            <Link to="/contact">
+              <motion.span
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex w-full md:w-auto bg-brand-gold text-brand-black px-10 py-5 rounded-2xl font-bold text-lg items-center justify-center gap-3 shadow-[0_0_30px_rgba(212,175,55,0.3)] cursor-pointer"
+              >
+                REQUEST A CONSULTATION <ArrowRight size={20} />
+              </motion.span>
+            </Link>
             <motion.a
               href="tel:2064188749"
               whileHover={{ scale: 1.05 }}

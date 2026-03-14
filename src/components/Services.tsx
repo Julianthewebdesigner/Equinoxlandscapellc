@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { services } from "../data/services";
 
@@ -35,7 +36,8 @@ export default function Services() {
             const isOther = hovered !== null && !isHovered;
 
             return (
-              <div
+              <Link
+                to={`/services/${service.slug}`}
                 key={idx}
                 onMouseEnter={() => setHovered(idx)}
                 className="relative overflow-hidden rounded-xl cursor-pointer"
@@ -147,7 +149,7 @@ export default function Services() {
                     />
                   </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
         </div>
@@ -155,7 +157,8 @@ export default function Services() {
         {/* Mobile: Vertical Stack */}
         <div className="flex flex-col gap-4 md:hidden">
           {services.map((service, idx) => (
-            <div
+            <Link
+              to={`/services/${service.slug}`}
               key={idx}
               className="relative h-64 rounded-xl overflow-hidden cursor-pointer group"
             >
@@ -183,7 +186,7 @@ export default function Services() {
                   <ArrowRight size={12} className="text-brand-gold" />
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
