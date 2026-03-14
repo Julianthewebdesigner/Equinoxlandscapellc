@@ -25,10 +25,10 @@ export default function Footer() {
               Grounded in tradition, driven by excellence.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-brand-gold hover:text-brand-gold transition-colors">
+              <a href="https://www.instagram.com/equinoxlandscapellc" target="_blank" rel="noopener noreferrer" aria-label="Equinox Landscape on Instagram" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-brand-gold hover:text-brand-gold transition-colors">
                 <Instagram size={18} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-brand-gold hover:text-brand-gold transition-colors">
+              <a href="https://www.facebook.com/equinoxlandscapellc" target="_blank" rel="noopener noreferrer" aria-label="Equinox Landscape on Facebook" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-brand-gold hover:text-brand-gold transition-colors">
                 <Facebook size={18} />
               </a>
             </div>
@@ -63,16 +63,16 @@ export default function Footer() {
             <h4 className="text-brand-gold font-semibold mb-6 uppercase tracking-wider text-sm">Get In Touch</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <Phone size={18} className="text-brand-gold mt-1" />
+                <Phone size={18} className="text-brand-gold mt-1 shrink-0" />
                 <div>
-                  <p className="text-white font-medium">(206) 418-8749</p>
+                  <a href="tel:+12064188749" className="text-white font-medium hover:text-brand-gold transition-colors">(206) 418-8749</a>
                   <p className="text-white/40 text-sm">Mon - Sat: 8am - 6pm</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <Mail size={18} className="text-brand-gold mt-1" />
+                <Mail size={18} className="text-brand-gold mt-1 shrink-0" />
                 <div>
-                  <p className="text-white font-medium">Equinoxlandscapellc@gmail.com</p>
+                  <a href="mailto:Equinoxlandscapellc@gmail.com" className="text-white font-medium hover:text-brand-gold transition-colors break-all">Equinoxlandscapellc@gmail.com</a>
                   <p className="text-white/40 text-sm">Reply within 24 hours</p>
                 </div>
               </li>

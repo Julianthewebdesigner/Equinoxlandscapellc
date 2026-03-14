@@ -66,7 +66,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-28 bg-brand-black">
+    <section id="faq" className="py-28 bg-brand-black">
       <div className="max-w-5xl mx-auto px-6">
         {/* Heading */}
         <div className="text-center mb-16">
@@ -100,13 +100,14 @@ export default function FAQ() {
 
         {/* CTA */}
         <div className="mt-14 text-center">
-          <motion.button
+          <motion.a
+            href="#contact"
             whileHover={{ scale: 1.04 }}
             whileTap={{ scale: 0.97 }}
-            className="bg-brand-gold text-brand-black px-10 py-4 font-bold text-sm tracking-widest uppercase rounded-sm shadow-lg hover:bg-brand-gold-light transition-colors duration-200"
+            className="inline-block bg-brand-gold text-brand-black px-10 py-4 font-bold text-sm tracking-widest uppercase rounded-sm shadow-lg hover:bg-brand-gold-light transition-colors duration-200"
           >
             Feel Confident. Get Your Instant Estimate
-          </motion.button>
+          </motion.a>
         </div>
       </div>
     </section>

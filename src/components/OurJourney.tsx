@@ -97,6 +97,7 @@ export default function OurJourney() {
 
   return (
     <section
+      id="about"
       ref={sectionRef}
       className="relative py-24 md:py-32 bg-brand-black overflow-hidden"
     >

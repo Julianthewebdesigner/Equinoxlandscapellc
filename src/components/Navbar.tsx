@@ -68,17 +68,18 @@ export default function Navbar() {
               ))}
             </div>
             <div className="flex items-center gap-6">
-              <div className="flex items-center gap-2 text-white/60">
+              <a href="tel:+12064188749" className="flex items-center gap-2 text-white/60 hover:text-white transition-colors">
                 <Phone size={16} className="text-brand-gold" />
                 <span className="text-sm font-bold">(206) 418-8749</span>
-              </div>
-              <motion.button
+              </a>
+              <motion.a
+                href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-brand-gold text-brand-black px-6 py-2.5 rounded-full text-sm font-bold shadow-[0_0_15px_rgba(212,175,55,0.2)] hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all"
               >
                 GET A QUOTE
-              </motion.button>
+              </motion.a>
             </div>
           </div>
 
@@ -214,13 +215,14 @@ export default function Navbar() {
                 </a>
 
                 {/* CTA Button */}
-                <motion.button
+                <motion.a
+                  href="#contact"
                   whileTap={{ scale: 0.97 }}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="w-full py-4 rounded-2xl bg-brand-gold text-brand-black font-bold text-sm tracking-widest uppercase shadow-[0_0_30px_rgba(201,168,76,0.25)] hover:shadow-[0_0_50px_rgba(201,168,76,0.4)] transition-all duration-300"
+                  className="w-full py-4 rounded-2xl bg-brand-gold text-brand-black font-bold text-sm tracking-widest uppercase shadow-[0_0_30px_rgba(201,168,76,0.25)] hover:shadow-[0_0_50px_rgba(201,168,76,0.4)] transition-all duration-300 text-center block"
                 >
                   Get a Free Quote
-                </motion.button>
+                </motion.a>
 
                 {/* Tagline */}
                 <p className="text-center text-[11px] uppercase tracking-[0.25em] text-white/20 font-semibold">

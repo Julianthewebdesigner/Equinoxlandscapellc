@@ -134,10 +134,10 @@ export default function Hero() {
                 <span className="text-white/50 text-sm ml-1">5-Star Rated</span>
               </div>
               <div className="w-px h-5 bg-white/15 hidden sm:block" />
-              <div className="flex items-center gap-2 text-white/50 text-sm">
+              <a href="tel:+12064188749" className="flex items-center gap-2 text-white/50 text-sm hover:text-white transition-colors">
                 <Phone size={13} className="text-brand-gold" />
                 <span className="font-bold text-white">(206) 418-8749</span>
-              </div>
+              </a>
               <div className="w-px h-5 bg-white/15 hidden sm:block" />
               <span className="text-white/50 text-sm">Licensed &amp; Insured</span>
             </motion.div>
