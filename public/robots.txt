@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.equinoxlandscapellc.com/sitemap.xml

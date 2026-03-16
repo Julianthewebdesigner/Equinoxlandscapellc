@@ -2,12 +2,9 @@ import { motion } from "motion/react";
 import { Phone, Mail, MapPin, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
 import { services } from "../data/services";
+import { serviceAreas } from "../data/serviceAreas";
 
 export default function Footer() {
-  const serviceAreas = [
-    "Kent", "Seattle", "Renton", "Auburn", 
-    "Federal Way", "Des Moines", "Covington", "Maple Valley"
-  ];
 
   return (
     <footer className="bg-brand-black border-t border-white/10 pt-20 pb-10">
@@ -38,9 +35,14 @@ export default function Footer() {
             <h4 className="text-brand-gold font-semibold mb-6 uppercase tracking-wider text-sm">Service Areas</h4>
             <ul className="grid grid-cols-2 gap-y-3 gap-x-4">
               {serviceAreas.map((area) => (
-                <li key={area} className="text-white/60 hover:text-white transition-colors cursor-pointer flex items-center gap-2">
-                  <MapPin size={12} className="text-brand-gold/50" />
-                  {area}
+                <li key={area.slug}>
+                  <Link
+                    to={`/service-areas/${area.slug}`}
+                    className="text-white/60 hover:text-white transition-colors flex items-center gap-2"
+                  >
+                    <MapPin size={12} className="text-brand-gold/50 shrink-0" />
+                    {area.city}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -68,7 +70,7 @@ export default function Footer() {
             <h4 className="text-brand-gold font-semibold mb-6 uppercase tracking-wider text-sm">Company</h4>
             <ul className="space-y-3">
               <li><a href="/#about" className="text-white/60 hover:text-white transition-colors">About Us</a></li>
-              <li><a href="/#projects" className="text-white/60 hover:text-white transition-colors">Recent Projects</a></li>
+              <li><Link to="/blog" className="text-white/60 hover:text-white transition-colors">Blog & Guides</Link></li>
               <li><a href="/#faq" className="text-white/60 hover:text-white transition-colors">FAQ</a></li>
               <li><Link to="/contact" className="text-white/60 hover:text-white transition-colors">Contact</Link></li>
             </ul>

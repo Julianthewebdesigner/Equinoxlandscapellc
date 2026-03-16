@@ -25,10 +25,9 @@ export default function Navbar() {
   }, [isMobileMenuOpen]);
 
   const navLinks = [
-    { name: "Projects", href: "/#projects", number: "02" },
-    { name: "Gallery", href: "/#gallery", number: "03" },
-    { name: "FAQ", href: "/#faq", number: "04" },
-    { name: "Contact", href: "/contact", number: "05", isPage: true },
+    { name: "Blog", href: "/blog", number: "02", isPage: true },
+    { name: "FAQ", href: "/#faq", number: "03" },
+    { name: "Contact", href: "/contact", number: "04", isPage: true },
   ];
 
   return (
