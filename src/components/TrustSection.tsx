@@ -10,15 +10,15 @@ export default function TrustSection() {
       icon: <History size={24} />
     },
     {
-      year: "Youthful Drive",
-      title: "Modern Systems",
-      description: "At 21, our founder combines high energy with modern communication systems to ensure transparency and reliability.",
+      year: "Young & Hungry",
+      title: "Passion Meets Adaptability",
+      description: "I'm young — and I own that. I grew up in this industry, I've been problem-solving on job sites since I was a teenager, and I stay curious on every project. Put a challenge in front of me and I'll find the solution. That drive is what sets Equinox apart.",
       icon: <Target size={24} />
     },
     {
       year: "Expert Crew",
-      title: "Decades of Experience",
-      description: "While the company is young, our crew brings many years of professional landscaping experience to every project.",
+      title: "15–20 Years on the Tools",
+      description: "Equinox is a young company — and I'm upfront about that. What I'm not new to is this industry. Our crew carries 15–20 years of hands-on landscaping experience. The knowledge is there. The work speaks for itself.",
       icon: <Award size={24} />
     }
   ];
@@ -59,8 +59,8 @@ export default function TrustSection() {
               </div>
               <div className="w-px h-12 bg-white/10" />
               <div className="text-center">
-                <p className="text-4xl font-bold text-brand-gold">500+</p>
-                <p className="text-white/40 text-xs uppercase tracking-widest mt-1">Projects Done</p>
+                <p className="text-4xl font-bold text-brand-gold">15–20</p>
+                <p className="text-white/40 text-xs uppercase tracking-widest mt-1">Yrs Crew Experience</p>
               </div>
             </div>
           </div>

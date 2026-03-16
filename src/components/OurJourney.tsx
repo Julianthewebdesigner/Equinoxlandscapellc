@@ -42,8 +42,8 @@ const milestones = [
     isFeatured: true,
     body: [
       "Founded Equinox Landscape LLC with a single vision: to modernize landscaping by combining skilled craftsmanship, clear communication, project transparency, and modern systems.",
-      "Equinox uses structured workflows and a CRM system so every project detail is tracked clearly — from estimate to completion.",
-      "I personally stay involved on every job site to ensure everything is executed correctly and to the standard our clients expect.",
+      "The company is young. I'm young. I'll be the first to tell you that. But the crew behind every Equinox project carries 15–20 years of hands-on experience — and I grew up in this industry alongside them.",
+      "I personally stay involved on every job site to ensure everything is executed correctly and to the standard our clients expect. Put a problem in front of us — we'll find the solution.",
     ],
     bullets: [
       "Skilled craftsmanship",
@@ -331,10 +331,10 @@ function ClosingCard() {
         <div className="relative">
           <div className="w-10 h-[1px] bg-brand-gold mb-8" />
           <p className="text-xl md:text-2xl font-bold leading-snug text-white/90">
-            "Equinox Landscape is built to bring a new level of{" "}
-            <span className="text-brand-gold">professionalism</span> and{" "}
-            <span className="text-brand-gold">transparency</span> to
-            landscaping in the Seattle and Kent, Washington area."
+            "I'm young, and I'll never pretend otherwise. But I grew up in this industry — I know the work, I know the problems, and I know how to solve them. Equinox is backed by a crew with{" "}
+            <span className="text-brand-gold">15–20 years of experience</span>{" "}
+            and driven by a founder who is{" "}
+            <span className="text-brand-gold">all in on every project.</span>"
           </p>
           <div className="mt-10 flex items-center gap-4">
             <img

@@ -6,7 +6,7 @@ export default function WhyChooseUs() {
     {
       icon: <Users className="text-brand-gold" />,
       title: "Experienced Crews",
-      description: "Our team brings years of professional landscaping expertise to every project."
+      description: "Our crew brings 15–20 years of professional landscaping experience. The company is new — the skill isn't."
     },
     {
       icon: <Clock className="text-brand-gold" />,
@@ -43,8 +43,7 @@ export default function WhyChooseUs() {
                 <span className="text-brand-gold">YOUR PEACE OF MIND, GUARANTEED.</span>
               </h2>
               <p className="mt-6 text-white/60 text-lg max-w-xl">
-                Your investment is protected by our unwavering commitment to quality and transparency. 
-                We combine youthful drive with decades of industry wisdom.
+                I'm a young founder with a passion for this work and a crew that has been doing it for 15–20 years. That combination — fresh energy, deep experience, and honest communication — is what you're hiring when you choose Equinox.
               </p>
             </motion.div>
 
