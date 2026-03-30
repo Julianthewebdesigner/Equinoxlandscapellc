@@ -16,7 +16,7 @@ export default function FounderStory() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative py-24 md:py-36 bg-brand-black overflow-hidden"
+      className="relative py-14 md:py-20 bg-brand-black overflow-hidden"
     >
       {/* Ambient glows */}
       <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-brand-gold/5 blur-[180px] rounded-full pointer-events-none" />
@@ -29,13 +29,13 @@ export default function FounderStory() {
           initial={{ opacity: 0, y: 16 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="block text-brand-gold font-bold tracking-[0.25em] uppercase text-xs mb-16 md:mb-20"
+          className="block text-brand-gold font-bold tracking-[0.25em] uppercase text-xs mb-10 md:mb-12"
         >
           The Man Behind Equinox
         </motion.span>
 
         {/* Two-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
           {/* ── Left: Photo ── */}
           <motion.div
@@ -53,7 +53,7 @@ export default function FounderStory() {
                 src="/images/Juliansequinoxpfp.jpeg"
                 alt="Julian Aguilar – Founder of Equinox Landscape LLC"
                 className="w-full object-cover object-center"
-                style={{ aspectRatio: "3 / 4", maxHeight: 620 }}
+                style={{ aspectRatio: "3 / 4", maxHeight: 480 }}
               />
 
               {/* Name overlay */}
@@ -70,7 +70,7 @@ export default function FounderStory() {
               initial={{ opacity: 0, scale: 0.85 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.55 }}
-              className="absolute -bottom-5 -right-3 md:-right-7 bg-brand-charcoal border border-brand-gold/35 rounded-2xl px-5 py-4 shadow-[0_0_30px_rgba(201,168,76,0.14)]"
+              className="absolute -bottom-5 -right-3 md:-right-7 z-20 bg-brand-charcoal border border-brand-gold/35 rounded-2xl px-5 py-4 shadow-[0_0_30px_rgba(201,168,76,0.14)]"
             >
               <p className="text-brand-gold text-3xl font-black leading-none">7+</p>
               <p className="text-white/45 text-[10px] tracking-widest uppercase mt-1.5 leading-tight">
@@ -84,9 +84,9 @@ export default function FounderStory() {
             initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.85, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.2 }}
-            className="flex flex-col gap-7"
+            className="flex flex-col gap-5"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-[3.25rem] font-bold tracking-tight leading-[1.08]">
+            <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold tracking-tight leading-[1.08]">
               YOUR OUTDOOR<br />
               SPACE IS IN{" "}
               <span className="text-brand-gold italic">GOOD HANDS.</span>
@@ -124,7 +124,7 @@ export default function FounderStory() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.45 }}
-          className="mt-20 md:mt-28 grid grid-cols-2 md:grid-cols-4 gap-4"
+          className="mt-12 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4"
         >
           {pillars.map((pillar, i) => (
             <motion.div
