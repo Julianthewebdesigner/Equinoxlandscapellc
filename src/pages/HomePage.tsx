@@ -2,7 +2,7 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Services from "../components/Services";
 import Testimonials from "../components/Testimonials";
-import OurJourney from "../components/OurJourney";
+import FounderStory from "../components/FounderStory";
 import FAQ from "../components/FAQ";
 import FinalCTA from "../components/FinalCTA";
 import HomeContactForm from "../components/HomeContactForm";
@@ -29,7 +29,7 @@ export default function HomePage() {
 
       <main>
         <Hero />
-        <OurJourney />
+        <FounderStory />
         <Services />
         <Testimonials />
         <FAQ />
