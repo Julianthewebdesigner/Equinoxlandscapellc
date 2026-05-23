@@ -174,6 +174,10 @@ export default function Hero() {
               <img
                 src="/images/hero/Transparent-Equinox-logo.png"
                 alt="Equinox Landscape LLC logo"
+                width="56"
+                height="56"
+                loading="lazy"
+                decoding="async"
                 className="w-14 h-14 object-contain drop-shadow-lg"
               />
               <div>
@@ -200,6 +204,8 @@ export default function Hero() {
                   <img
                     src={project.image}
                     alt={project.title}
+                    loading="lazy"
+                    decoding="async"
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 via-brand-black/20 to-transparent" />

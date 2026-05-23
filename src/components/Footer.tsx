@@ -16,6 +16,8 @@ export default function Footer() {
               <img
                 src="/images/hero/Transparent-Equinox-logo.png"
                 alt="Equinox Landscape"
+                loading="lazy"
+                decoding="async"
                 className="h-14 w-auto"
               />
             </div>

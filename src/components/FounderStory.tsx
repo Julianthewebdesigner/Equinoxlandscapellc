@@ -52,6 +52,8 @@ export default function FounderStory() {
               <img
                 src="/images/Juliansequinoxpfp.jpeg"
                 alt="Julian Aguilar – Founder of Equinox Landscape LLC"
+                loading="lazy"
+                decoding="async"
                 className="w-full object-cover object-center"
                 style={{ aspectRatio: "3 / 4", maxHeight: 480 }}
               />

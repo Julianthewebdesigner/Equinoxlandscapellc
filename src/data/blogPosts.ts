@@ -23,6 +23,163 @@ export type BlogPost = {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "seattle-tourism-surge-airbnb-hosts-2026",
+    title: "750,000 Visitors Are Coming to Seattle — What It Means for Airbnb Hosts",
+    excerpt:
+      "Seattle is bracing for one of the largest tourism waves in its history. Here's what 750K+ incoming visitors mean for your short-term rental — and the maintenance gaps that could quietly cost you thousands.",
+    category: "Short-Term Rentals",
+    date: "May 23, 2026",
+    readTime: "9 min read",
+    seo: {
+      title: "750K Visitors Coming to Seattle — Is Your Airbnb Ready? | Equinox Landscape",
+      description: "Seattle is expecting roughly 750,000 visitors. For Airbnb and short-term rental hosts, that's an opportunity — and a risk. Learn how landscaping, cleanups, and exterior maintenance directly impact bookings, reviews, and Superhost status.",
+      keywords: "Airbnb landscaping Seattle WA, short-term rental yard maintenance Seattle, Airbnb cleaning Seattle, Airbnb curb appeal Seattle, vacation rental lawn care King County, Airbnb host maintenance Seattle, STR property maintenance Seattle WA",
+    },
+    content: [
+      {
+        type: "paragraph",
+        text: "Seattle is heading into one of the busiest visitor seasons in its modern history. Estimates point to roughly 750,000 visitors flowing through the city over the coming months — between summer tourism, conferences, sporting events, and cruise season at Pier 91. For Airbnb and short-term rental hosts across Seattle and King County, that number isn't just trivia. It's the difference between a fully booked, five-star season and one where you watch your competition fill up while your calendar sits half-empty.",
+      },
+      {
+        type: "paragraph",
+        text: "Here's the part most hosts underestimate: the listings that win during a tourism surge aren't always the prettiest interiors or the cheapest rates. They're the ones that look cared for from the moment a guest pulls up. And in Seattle's wet, fast-growing climate, that exterior story can fall apart in just a few weeks of neglect.",
+      },
+      {
+        type: "heading2",
+        text: "Why a Tourism Surge Magnifies Everything — Good and Bad",
+      },
+      {
+        type: "paragraph",
+        text: "When demand spikes, two things happen at the same time. First, more guests are searching, scrolling, and comparing listings side-by-side. Second, those guests are paying premium nightly rates, which means their expectations are higher than usual. A mossy walkway, an overgrown front bed, or a patio covered in fir needles isn't a small cosmetic issue at $89/night. At $289/night during peak season, it becomes the reason a guest leaves a 3-star review — or worse, requests a refund.",
+      },
+      {
+        type: "callout",
+        text: "A single 3-star review during your highest-revenue month can knock you out of Superhost status, suppress your search ranking, and quietly cost you tens of thousands in lost bookings for the rest of the year.",
+      },
+      {
+        type: "heading2",
+        text: "The Pain Points Hosts Don't See Until It's Too Late",
+      },
+      {
+        type: "heading3",
+        text: "1. Listing Photos vs. Reality",
+      },
+      {
+        type: "paragraph",
+        text: "Most Seattle Airbnb listings were photographed in spring or early summer of a previous year — when the lawn was green, the bark was fresh, and the hedges were tight. Two seasons of skipped maintenance later, the property a guest pulls up to looks nothing like the photos. That mismatch is one of the most common drivers of negative reviews, and it's entirely preventable.",
+      },
+      {
+        type: "heading3",
+        text: "2. Moss, Algae, and the Pacific Northwest Patio Problem",
+      },
+      {
+        type: "paragraph",
+        text: "Seattle's wet climate is brutal on hardscape. Pavers, concrete walkways, and wood decks grow a slick green film of moss and algae shockingly fast — and that film is more than ugly. It's a slip-and-fall liability. A guest who twists an ankle on a slippery walkway isn't writing a polite review; they're filing a claim. Hosts who don't pressure wash and treat their exterior surfaces ahead of peak season are inviting both bad reviews and insurance headaches.",
+      },
+      {
+        type: "heading3",
+        text: "3. Overgrown Landscaping = 'This Place Isn't Cared For'",
+      },
+      {
+        type: "paragraph",
+        text: "Guests subconsciously read the exterior as a signal for the entire stay. Knee-high grass, weeds bursting through bark, leggy hedges, and a front bed that looks abandoned all communicate the same message: 'Nobody is paying attention here.' Even if the inside is spotless, that first impression colors everything — and it shows up in reviews as vague complaints about 'cleanliness' that you can't pin down because the kitchen was actually fine.",
+      },
+      {
+        type: "heading3",
+        text: "4. Same-Day Turnovers Falling Apart",
+      },
+      {
+        type: "paragraph",
+        text: "Peak season often means back-to-back bookings with a 4-hour turnover window. Your cleaning crew can flip the inside in time. But if the front yard is covered in leaves, the patio furniture is grimy, or the lawn hasn't been mowed in three weeks, that exterior chaos lands on the next guest. Hosts without a recurring exterior maintenance partner end up scrambling — or worse, just hoping the guest doesn't notice.",
+      },
+      {
+        type: "heading3",
+        text: "5. The Hidden Revenue Loss",
+      },
+      {
+        type: "paragraph",
+        text: "Airbnb's search algorithm rewards listings with high recent ratings, fast booking acceptance, and Superhost status. Each of those is fragile. One bad month — say, a slow lawn-care decision in July — can drop your listing's visibility for six months afterward. Hosts often blame 'the market' for a slow fall when the real cause was a few unmaintained exterior issues during the busiest weeks of summer.",
+      },
+      {
+        type: "heading2",
+        text: "What 750,000 Visitors Means in Dollar Terms",
+      },
+      {
+        type: "paragraph",
+        text: "Run the math on a typical Seattle-area Airbnb during a high-tourism season and the stakes become obvious. A property that books at $250/night for 25 of 30 nights generates $6,250 in a single month. Stretched across June, July, August, and September — Seattle's prime visitor window — that's $25,000+ in seasonal revenue. The cost of keeping that property looking move-in-ready for the entire stretch is a tiny fraction of what a single bad review costs you.",
+      },
+      {
+        type: "table",
+        headers: ["Scenario", "Seasonal Revenue Impact", "Root Cause"],
+        rows: [
+          ["5-star reviews, Superhost retained", "+$5,000 – $12,000 above baseline", "Consistent exterior + interior presentation"],
+          ["One 3-star review during peak month", "−$3,000 – $8,000 (search rank drop)", "Curb appeal or cleanliness complaint"],
+          ["Loss of Superhost badge", "−$8,000 – $20,000 over 6 months", "Average rating dropping below 4.8"],
+          ["Slip-and-fall incident on patio", "−$5,000 to six figures (insurance)", "Moss / algae on unmaintained hardscape"],
+        ],
+      },
+      {
+        type: "callout",
+        text: "If exterior maintenance is the thing standing between you and a fully booked, five-star season — that's not a cost. That's the cheapest insurance policy on your rental income.",
+      },
+      {
+        type: "heading2",
+        text: "What a Tourism-Ready Airbnb Exterior Actually Looks Like",
+      },
+      {
+        type: "paragraph",
+        text: "Hosts who consistently outperform during high-demand seasons share a pattern. Their properties don't just look good for the photo shoot — they look good every single check-in, all season long. That's the result of a recurring maintenance schedule, not a one-time spring cleanup.",
+      },
+      {
+        type: "list",
+        items: [
+          "Lawn mowed and edged on a predictable cadence — weekly or bi-weekly through the growing season",
+          "Bark and mulch refreshed in spring so beds look intentional, not abandoned",
+          "Hedges and shrubs trimmed before they get leggy or block walkways",
+          "Patios and walkways pressure washed to remove moss, algae, and slip hazards",
+          "Weeds pulled from cracks, beds, and along walkways before guests arrive",
+          "Leaves and debris cleared continuously — not just once in November",
+          "Seasonal color (planters, annuals) refreshed at the entry to elevate listing photos",
+        ],
+      },
+      {
+        type: "heading2",
+        text: "Why Hosts Choose Equinox Landscape",
+      },
+      {
+        type: "paragraph",
+        text: "Equinox Landscape works with Airbnb and short-term rental owners across Seattle and King County to handle the exact maintenance gaps that quietly kill bookings. We're built around recurring service — not one-off jobs — because the properties that win during a tourism surge are the ones that look consistently cared for, every single turnover.",
+      },
+      {
+        type: "list",
+        items: [
+          "Recurring lawn maintenance scheduled around your booking calendar",
+          "Pre-arrival exterior cleanups so every guest walks into a fresh-looking property",
+          "Pressure washing for patios, walkways, and entry areas — eliminates moss and liability",
+          "Seasonal bark refresh and bed maintenance to keep listing photos accurate",
+          "Hedge trimming, weed control, and debris removal handled on a predictable schedule",
+          "Direct communication with your cleaning crew or property manager — we coordinate, you don't",
+        ],
+      },
+      {
+        type: "callout",
+        text: "If you own a short-term rental in Seattle, Kent, Renton, Auburn, Federal Way, or anywhere in King County, now is the time to lock in recurring exterior maintenance — before the peak booking weeks. Calendars fill up fast once the season starts.",
+      },
+      {
+        type: "heading2",
+        text: "Don't Let a $200 Maintenance Gap Cost You $20,000 in Bookings",
+      },
+      {
+        type: "paragraph",
+        text: "With 750,000 visitors flowing into Seattle, the hosts who prepare now are the ones who will look back at this season as their best ever. The hosts who don't will be wondering why their reviews slipped, why their nightly rate had to come down, and why their fall calendar is suddenly soft. The difference between those two outcomes is rarely the interior. It's the exterior. And it's fixable.",
+      },
+      {
+        type: "callout",
+        text: "Get your Airbnb tourism-ready. Equinox Landscape LLC offers free, no-obligation consultations and recurring maintenance plans built for short-term rental properties throughout Seattle and King County. Call (206) 418-8749 or fill out our contact form to get on the schedule before peak season.",
+      },
+    ],
+  },
+  {
     slug: "landscaping-cost-seattle-2025",
     title: "How Much Does Landscaping Cost in Seattle, WA? (2025 Pricing Guide)",
     excerpt:

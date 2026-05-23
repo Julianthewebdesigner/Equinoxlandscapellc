@@ -162,6 +162,8 @@ export default function BlogPostPage() {
           <img
             src="/images/hero/Equinox-newhero.jpeg"
             alt={post.title}
+            decoding="async"
+            fetchPriority="high"
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/80 to-brand-black/40" />
@@ -221,6 +223,8 @@ export default function BlogPostPage() {
                 <img
                   src="/images/IMG_4870.JPG"
                   alt="Julian Aguilar, Equinox Landscape LLC"
+                  loading="lazy"
+                  decoding="async"
                   className="w-14 h-14 rounded-full object-cover border-2 border-brand-gold/30"
                 />
                 <div>

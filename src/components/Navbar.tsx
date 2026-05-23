@@ -45,6 +45,10 @@ export default function Navbar() {
             <img
               src="/images/hero/Transparent-Equinox-logo.png"
               alt="Equinox Landscape LLC"
+              width="44"
+              height="44"
+              decoding="async"
+              fetchPriority="high"
               className="w-11 h-11 object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-300"
             />
             <div className="flex flex-col">

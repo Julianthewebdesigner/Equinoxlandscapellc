@@ -97,6 +97,8 @@ export default function ServiceAreaPage() {
           <img
             src="/images/hero/Equinox-newhero.jpeg"
             alt={`Landscaping in ${area.city}, ${area.state}`}
+            decoding="async"
+            fetchPriority="high"
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/75 to-brand-black/30" />

@@ -35,6 +35,7 @@ const categoryColors: Record<string, string> = {
   "Turf & Lawn": "bg-brand-green/10 text-green-400 border-brand-green/20",
   "Landscape Design": "bg-purple-500/10 text-purple-400 border-purple-500/20",
   "Home Value": "bg-orange-500/10 text-orange-400 border-orange-500/20",
+  "Short-Term Rentals": "bg-rose-500/10 text-rose-400 border-rose-500/20",
 };
 
 export default function BlogPage() {
@@ -96,6 +97,8 @@ export default function BlogPage() {
                   <img
                     src="/images/hero/Equinox-newhero.jpeg"
                     alt={featured.title}
+                    decoding="async"
+                    fetchPriority="high"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent to-brand-black/50 lg:to-brand-charcoal/30" />
@@ -150,6 +153,8 @@ export default function BlogPage() {
                     <img
                       src="/images/hero/Equinox-newhero.jpeg"
                       alt={post.title}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 to-transparent" />

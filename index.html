@@ -38,8 +38,29 @@
     <meta name="ICBM" content="47.3809, -122.2348" />
 
     <!-- ── Favicon ────────────────────────────────────────────────────── -->
-    <link rel="icon" type="image/png" href="/images/hero/Transparent-Equinox-logo.png" />
-    <link rel="apple-touch-icon" href="/images/hero/Transparent-Equinox-logo.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/images/hero/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/hero/apple-touch-icon.png" />
+
+    <!-- ── Preconnect for Google Fonts ───────────────────────────────── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- ── Fonts (non-render-blocking) ───────────────────────────────── -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap"
+      />
+    </noscript>
+
+    <!-- ── Preload hero (LCP) ────────────────────────────────────────── -->
+    <link rel="preload" as="image" href="/images/hero/Equinox-newhero.jpeg" fetchpriority="high" />
 
     <!-- ── Structured Data: LocalBusiness ────────────────────────────── -->
     <script type="application/ld+json">

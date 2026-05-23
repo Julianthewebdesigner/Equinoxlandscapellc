@@ -272,6 +272,8 @@ function TimelineCard({
             <img
               src="/images/IMG_4870.JPG"
               alt="Julian Aguilar"
+              loading="lazy"
+              decoding="async"
               className="w-10 h-10 rounded-full object-cover object-top border border-brand-gold/30 flex-shrink-0"
             />
             <span className="text-[10px] text-white/30 tracking-widest uppercase">Julian Aguilar · Founder</span>
@@ -340,6 +342,8 @@ function ClosingCard() {
             <img
               src="/images/IMG_4870.JPG"
               alt="Julian Aguilar – Founder of Equinox Landscape LLC"
+              loading="lazy"
+              decoding="async"
               className="w-14 h-14 rounded-full object-cover object-top border-2 border-brand-gold/40 shadow-[0_0_16px_rgba(201,168,76,0.2)] flex-shrink-0"
             />
             <div>

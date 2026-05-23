@@ -410,6 +410,8 @@ export default function ContactPage() {
                   <img
                     src="/images/IMG_4870.JPG"
                     alt="Julian Aguilar – Founder of Equinox Landscape LLC"
+                    loading="lazy"
+                    decoding="async"
                     className="w-20 h-20 rounded-2xl object-cover object-top border border-brand-gold/30 shadow-[0_0_20px_rgba(201,168,76,0.15)] flex-shrink-0"
                   />
                   <div>
