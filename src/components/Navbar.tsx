@@ -42,15 +42,22 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group relative z-50">
-            <img
-              src="/images/hero/Transparent-Equinox-logo.png"
-              alt="Equinox Landscape LLC"
-              width="44"
-              height="44"
-              decoding="async"
-              fetchPriority="high"
-              className="w-11 h-11 object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-300"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcSet="/images/hero/optimized/Transparent-Equinox-logo-112.webp 1x, /images/hero/optimized/Transparent-Equinox-logo-224.webp 2x"
+              />
+              <img
+                src="/images/hero/optimized/Transparent-Equinox-logo-112.png"
+                srcSet="/images/hero/optimized/Transparent-Equinox-logo-112.png 1x, /images/hero/optimized/Transparent-Equinox-logo-224.png 2x"
+                alt="Equinox Landscape LLC"
+                width="44"
+                height="44"
+                decoding="async"
+                fetchPriority="high"
+                className="w-11 h-11 object-contain drop-shadow-lg group-hover:scale-105 transition-transform duration-300"
+              />
+            </picture>
             <div className="flex flex-col">
               <span className="text-lg font-bold tracking-tight leading-none">
                 EQUINOX <span className="text-brand-gold">LANDSCAPE</span>

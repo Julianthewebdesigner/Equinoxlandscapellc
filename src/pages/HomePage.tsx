@@ -39,9 +39,9 @@ export default function HomePage() {
 
       <Footer />
 
-      {/* Global Glow Accents */}
-      <div className="fixed top-1/4 -left-20 w-96 h-96 bg-brand-green/10 blur-[120px] rounded-full pointer-events-none z-0" />
-      <div className="fixed bottom-1/4 -right-20 w-96 h-96 bg-brand-gold/5 blur-[120px] rounded-full pointer-events-none z-0" />
+      {/* Global Glow Accents — hidden on small screens (heavy blur is a mobile killer) */}
+      <div className="hidden md:block fixed top-1/4 -left-20 w-96 h-96 bg-brand-green/10 blur-[120px] rounded-full pointer-events-none z-0" />
+      <div className="hidden md:block fixed bottom-1/4 -right-20 w-96 h-96 bg-brand-gold/5 blur-[120px] rounded-full pointer-events-none z-0" />
     </div>
   );
 }

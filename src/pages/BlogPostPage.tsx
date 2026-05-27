@@ -159,13 +159,22 @@ export default function BlogPostPage() {
       {/* ── Hero ──────────────────────────────────────────────────────────────── */}
       <section className="relative h-[55vh] min-h-[440px] flex items-end overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src="/images/hero/Equinox-newhero.jpeg"
-            alt={post.title}
-            decoding="async"
-            fetchPriority="high"
-            className="w-full h-full object-cover object-center"
-          />
+          <picture>
+            <source
+              type="image/webp"
+              srcSet="/images/hero/optimized/Equinox-newhero-640.webp 640w, /images/hero/optimized/Equinox-newhero-1024.webp 1024w, /images/hero/optimized/Equinox-newhero-1600.webp 1600w, /images/hero/optimized/Equinox-newhero-1920.webp 1920w"
+              sizes="100vw"
+            />
+            <img
+              src="/images/hero/optimized/Equinox-newhero-1024.jpg"
+              srcSet="/images/hero/optimized/Equinox-newhero-640.jpg 640w, /images/hero/optimized/Equinox-newhero-1024.jpg 1024w, /images/hero/optimized/Equinox-newhero-1600.jpg 1600w, /images/hero/optimized/Equinox-newhero-1920.jpg 1920w"
+              sizes="100vw"
+              alt={post.title}
+              decoding="async"
+              fetchPriority="high"
+              className="w-full h-full object-cover object-center"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/80 to-brand-black/40" />
           <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/50 to-transparent" />
         </div>
@@ -220,13 +229,22 @@ export default function BlogPostPage() {
 
               {/* Bottom author note */}
               <div className="mt-12 pt-8 border-t border-white/8 flex items-center gap-4">
-                <img
-                  src="/images/IMG_4870.JPG"
-                  alt="Julian Aguilar, Equinox Landscape LLC"
-                  loading="lazy"
-                  decoding="async"
-                  className="w-14 h-14 rounded-full object-cover border-2 border-brand-gold/30"
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet="/images/optimized/IMG_4870-400.webp 1x, /images/optimized/IMG_4870-800.webp 2x"
+                  />
+                  <img
+                    src="/images/optimized/IMG_4870-400.jpg"
+                    srcSet="/images/optimized/IMG_4870-400.jpg 1x, /images/optimized/IMG_4870-800.jpg 2x"
+                    alt="Julian Aguilar, Equinox Landscape LLC"
+                    width="56"
+                    height="56"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-14 h-14 rounded-full object-cover border-2 border-brand-gold/30"
+                  />
+                </picture>
                 <div>
                   <p className="font-bold text-white text-sm">Julian Aguilar</p>
                   <p className="text-white/40 text-xs">Founder, Equinox Landscape LLC · Kent, WA</p>

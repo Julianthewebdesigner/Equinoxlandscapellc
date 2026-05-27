@@ -391,13 +391,22 @@ export default function ContactPage() {
               <div className="rounded-3xl bg-brand-charcoal/50 border border-white/8 p-7 relative overflow-hidden">
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-brand-gold/60 via-brand-gold/30 to-transparent" />
                 <div className="flex items-center gap-5">
-                  <img
-                    src="/images/IMG_4870.JPG"
-                    alt="Julian Aguilar – Founder of Equinox Landscape LLC"
-                    loading="lazy"
-                    decoding="async"
-                    className="w-20 h-20 rounded-2xl object-cover object-top border border-brand-gold/30 shadow-[0_0_20px_rgba(201,168,76,0.15)] flex-shrink-0"
-                  />
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcSet="/images/optimized/IMG_4870-400.webp 1x, /images/optimized/IMG_4870-800.webp 2x"
+                    />
+                    <img
+                      src="/images/optimized/IMG_4870-400.jpg"
+                      srcSet="/images/optimized/IMG_4870-400.jpg 1x, /images/optimized/IMG_4870-800.jpg 2x"
+                      alt="Julian Aguilar – Founder of Equinox Landscape LLC"
+                      width="80"
+                      height="80"
+                      loading="lazy"
+                      decoding="async"
+                      className="w-20 h-20 rounded-2xl object-cover object-top border border-brand-gold/30 shadow-[0_0_20px_rgba(201,168,76,0.15)] flex-shrink-0"
+                    />
+                  </picture>
                   <div>
                     <p className="text-[10px] uppercase tracking-widest text-white/30 font-semibold mb-1">Your Point of Contact</p>
                     <p className="text-white font-bold text-base leading-tight">Julian Aguilar</p>

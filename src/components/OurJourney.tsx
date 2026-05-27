@@ -269,13 +269,22 @@ function TimelineCard({
 
         {index === 0 && (
           <div className="flex items-center gap-3 mb-5">
-            <img
-              src="/images/IMG_4870.JPG"
-              alt="Julian Aguilar"
-              loading="lazy"
-              decoding="async"
-              className="w-10 h-10 rounded-full object-cover object-top border border-brand-gold/30 flex-shrink-0"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcSet="/images/optimized/IMG_4870-400.webp 1x, /images/optimized/IMG_4870-800.webp 2x"
+              />
+              <img
+                src="/images/optimized/IMG_4870-400.jpg"
+                srcSet="/images/optimized/IMG_4870-400.jpg 1x, /images/optimized/IMG_4870-800.jpg 2x"
+                alt="Julian Aguilar"
+                width="40"
+                height="40"
+                loading="lazy"
+                decoding="async"
+                className="w-10 h-10 rounded-full object-cover object-top border border-brand-gold/30 flex-shrink-0"
+              />
+            </picture>
             <span className="text-[10px] text-white/30 tracking-widest uppercase">Julian Aguilar · Founder</span>
           </div>
         )}
@@ -339,13 +348,22 @@ function ClosingCard() {
             <span className="text-brand-gold">all in on every project.</span>"
           </p>
           <div className="mt-10 flex items-center gap-4">
-            <img
-              src="/images/IMG_4870.JPG"
-              alt="Julian Aguilar – Founder of Equinox Landscape LLC"
-              loading="lazy"
-              decoding="async"
-              className="w-14 h-14 rounded-full object-cover object-top border-2 border-brand-gold/40 shadow-[0_0_16px_rgba(201,168,76,0.2)] flex-shrink-0"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcSet="/images/optimized/IMG_4870-400.webp 1x, /images/optimized/IMG_4870-800.webp 2x"
+              />
+              <img
+                src="/images/optimized/IMG_4870-400.jpg"
+                srcSet="/images/optimized/IMG_4870-400.jpg 1x, /images/optimized/IMG_4870-800.jpg 2x"
+                alt="Julian Aguilar – Founder of Equinox Landscape LLC"
+                width="56"
+                height="56"
+                loading="lazy"
+                decoding="async"
+                className="w-14 h-14 rounded-full object-cover object-top border-2 border-brand-gold/40 shadow-[0_0_16px_rgba(201,168,76,0.2)] flex-shrink-0"
+              />
+            </picture>
             <div>
               <p className="text-sm font-bold text-white/80">Julian Aguilar</p>
               <p className="text-[11px] text-white/30 tracking-widest uppercase">Founder · Equinox Landscape LLC</p>

@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import Picture from "./Picture";
 
 const testimonials = [
   {
@@ -25,9 +26,14 @@ export default function Testimonials() {
   return (
     <section className="relative overflow-hidden">
       {/* Background image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/images/hero/Equinox-newhero.jpeg')" }}
+      <Picture
+        base="/images/hero/optimized/Equinox-newhero"
+        widths={[640, 1024, 1600, 1920]}
+        sizes="100vw"
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover"
       />
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-brand-black/75" />

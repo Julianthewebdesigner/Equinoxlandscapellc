@@ -49,14 +49,23 @@ export default function FounderStory() {
               {/* Top gold line */}
               <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-gold/70 to-transparent z-10" />
 
-              <img
-                src="/images/Juliansequinoxpfp.jpeg"
-                alt="Julian Aguilar – Founder of Equinox Landscape LLC"
-                loading="lazy"
-                decoding="async"
-                className="w-full object-cover object-center"
-                style={{ aspectRatio: "3 / 4", maxHeight: 480 }}
-              />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet="/images/optimized/Juliansequinoxpfp-400.webp 400w, /images/optimized/Juliansequinoxpfp-800.webp 800w, /images/optimized/Juliansequinoxpfp-1200.webp 1200w"
+                  sizes="(max-width: 768px) 100vw, 500px"
+                />
+                <img
+                  src="/images/optimized/Juliansequinoxpfp-800.jpg"
+                  srcSet="/images/optimized/Juliansequinoxpfp-400.jpg 400w, /images/optimized/Juliansequinoxpfp-800.jpg 800w, /images/optimized/Juliansequinoxpfp-1200.jpg 1200w"
+                  sizes="(max-width: 768px) 100vw, 500px"
+                  alt="Julian Aguilar – Founder of Equinox Landscape LLC"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full object-cover object-center"
+                  style={{ aspectRatio: "3 / 4", maxHeight: 480 }}
+                />
+              </picture>
 
               {/* Name overlay */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-brand-black via-brand-black/60 to-transparent px-8 pt-16 pb-8 z-10">

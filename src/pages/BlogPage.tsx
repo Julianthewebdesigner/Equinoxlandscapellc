@@ -94,13 +94,22 @@ export default function BlogPage() {
               <div className="grid lg:grid-cols-5">
                 {/* Image side */}
                 <div className="lg:col-span-2 h-64 lg:h-auto relative overflow-hidden">
-                  <img
-                    src="/images/hero/Equinox-newhero.jpeg"
-                    alt={featured.title}
-                    decoding="async"
-                    fetchPriority="high"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcSet="/images/hero/optimized/Equinox-newhero-640.webp 640w, /images/hero/optimized/Equinox-newhero-1024.webp 1024w, /images/hero/optimized/Equinox-newhero-1600.webp 1600w"
+                      sizes="(max-width: 1024px) 100vw, 40vw"
+                    />
+                    <img
+                      src="/images/hero/optimized/Equinox-newhero-1024.jpg"
+                      srcSet="/images/hero/optimized/Equinox-newhero-640.jpg 640w, /images/hero/optimized/Equinox-newhero-1024.jpg 1024w, /images/hero/optimized/Equinox-newhero-1600.jpg 1600w"
+                      sizes="(max-width: 1024px) 100vw, 40vw"
+                      alt={featured.title}
+                      decoding="async"
+                      fetchPriority="high"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </picture>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent to-brand-black/50 lg:to-brand-charcoal/30" />
                   <div className="absolute top-4 left-4">
                     <span className="text-[10px] font-bold tracking-widest uppercase bg-brand-gold text-brand-black px-3 py-1 rounded-full">
@@ -150,13 +159,22 @@ export default function BlogPage() {
                   className="group block h-full rounded-2xl overflow-hidden border border-white/6 hover:border-brand-gold/20 transition-all duration-400 bg-brand-charcoal/30"
                 >
                   <div className="relative h-52 overflow-hidden">
-                    <img
-                      src="/images/hero/Equinox-newhero.jpeg"
-                      alt={post.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+                    <picture>
+                      <source
+                        type="image/webp"
+                        srcSet="/images/hero/optimized/Equinox-newhero-640.webp 640w, /images/hero/optimized/Equinox-newhero-1024.webp 1024w"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                      <img
+                        src="/images/hero/optimized/Equinox-newhero-640.jpg"
+                        srcSet="/images/hero/optimized/Equinox-newhero-640.jpg 640w, /images/hero/optimized/Equinox-newhero-1024.jpg 1024w"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        alt={post.title}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    </picture>
                     <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 to-transparent" />
                   </div>
                   <div className="p-7">

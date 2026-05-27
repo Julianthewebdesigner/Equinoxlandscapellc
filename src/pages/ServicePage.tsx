@@ -5,6 +5,7 @@ import { services } from "../data/services";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import SEOHead from "../components/SEOHead";
+import Picture from "../components/Picture";
 
 const SITE_URL = "https://www.equinoxlandscapellc.com";
 
@@ -110,9 +111,14 @@ export default function ServicePage() {
       {/* ── Hero ─────────────────────────────────────────────────────────────── */}
       <section className="relative h-[80vh] min-h-[560px] flex items-end overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src={service.image}
+          <Picture
+            base={service.imageBase}
+            widths={[480, 800, 1200]}
+            sizes="100vw"
             alt={service.title}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/70 to-brand-black/20" />
@@ -282,9 +288,13 @@ export default function ServicePage() {
       <section className="py-24 bg-brand-black">
         <div className="max-w-7xl mx-auto px-6">
           <div className="relative rounded-3xl overflow-hidden h-[400px] md:h-[500px]">
-            <img
-              src={service.image}
+            <Picture
+              base={service.imageBase}
+              widths={[480, 800, 1200]}
+              sizes="(max-width: 768px) 100vw, 80vw"
               alt={service.title}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-brand-black/90 via-brand-black/50 to-transparent" />
@@ -341,9 +351,13 @@ export default function ServicePage() {
                   to={`/services/${s.slug}`}
                   className="group relative block h-56 rounded-2xl overflow-hidden"
                 >
-                  <img
-                    src={s.image}
+                  <Picture
+                    base={s.imageBase}
+                    widths={[480, 800]}
+                    sizes="(max-width: 640px) 100vw, 33vw"
                     alt={s.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/40 to-transparent" />

@@ -1,21 +1,15 @@
 import { motion } from "motion/react";
 import { MapPin, Phone, ArrowRight, Star, ChevronRight } from "lucide-react";
-
-// ─── HERO IMAGES ──────────────────────────────────────────────────────────────
-// Main background → public/images/hero/Equinox-newhero.jpeg
-// Thumbnail 1     → public/images/hero/Hero-1.jpeg
-// Thumbnail 2     → public/images/hero/Hero-2.jpeg
-// Logo            → public/images/hero/Transparent-Equinox-logo.png
-// ─────────────────────────────────────────────────────────────────────────────
+import Picture from "./Picture";
 
 const featuredProjects = [
   {
-    image: "/images/hero/Hero-1.jpeg",
+    base: "/images/hero/optimized/Hero-1",
     title: "Hardscape Patio & Garden Beds",
     location: "Bellevue, WA",
   },
   {
-    image: "/images/hero/Hero-2.jpeg",
+    base: "/images/hero/optimized/Hero-2",
     title: "Stone Retaining Wall & Lighting",
     location: "Kirkland, WA",
   },
@@ -29,11 +23,15 @@ export default function Hero() {
     >
       {/* ── Background ──────────────────────────────────────────────────── */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="/images/hero/Equinox-newhero.jpeg"
+        <Picture
+          base="/images/hero/optimized/Equinox-newhero"
+          widths={[640, 1024, 1600, 1920]}
+          sizes="100vw"
           alt="Premium landscape and hardscape design by Equinox Landscape LLC in Seattle, WA"
           className="w-full h-full object-cover object-center"
+          loading="eager"
           fetchPriority="high"
+          decoding="async"
         />
         {/* left fade so text pops */}
         <div className="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/75 to-brand-black/20" />
@@ -171,13 +169,16 @@ export default function Hero() {
 
             {/* Logo card */}
             <div className="glass-panel rounded-2xl px-6 py-4 flex items-center gap-4 min-w-[220px]">
-              <img
-                src="/images/hero/Transparent-Equinox-logo.png"
+              <Picture
+                base="/images/hero/optimized/Transparent-Equinox-logo"
+                widths={[112, 224]}
+                sizes="56px"
                 alt="Equinox Landscape LLC logo"
-                width="56"
-                height="56"
+                width={56}
+                height={56}
                 loading="lazy"
                 decoding="async"
+                fallbackExt="png"
                 className="w-14 h-14 object-contain drop-shadow-lg"
               />
               <div>
@@ -201,8 +202,10 @@ export default function Hero() {
                   whileHover={{ scale: 1.02 }}
                   className="group relative flex-1 rounded-2xl overflow-hidden h-[100px] sm:h-auto cursor-pointer min-w-0"
                 >
-                  <img
-                    src={project.image}
+                  <Picture
+                    base={project.base}
+                    widths={[400, 800]}
+                    sizes="(max-width: 640px) 50vw, 300px"
                     alt={project.title}
                     loading="lazy"
                     decoding="async"

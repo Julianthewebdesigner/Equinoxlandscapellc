@@ -13,13 +13,22 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <img
-                src="/images/hero/Transparent-Equinox-logo.png"
-                alt="Equinox Landscape"
-                loading="lazy"
-                decoding="async"
-                className="h-14 w-auto"
-              />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet="/images/hero/optimized/Transparent-Equinox-logo-112.webp 1x, /images/hero/optimized/Transparent-Equinox-logo-224.webp 2x"
+                />
+                <img
+                  src="/images/hero/optimized/Transparent-Equinox-logo-112.png"
+                  srcSet="/images/hero/optimized/Transparent-Equinox-logo-112.png 1x, /images/hero/optimized/Transparent-Equinox-logo-224.png 2x"
+                  alt="Equinox Landscape"
+                  width="56"
+                  height="56"
+                  loading="lazy"
+                  decoding="async"
+                  className="h-14 w-auto"
+                />
+              </picture>
             </div>
             <p className="text-white/60 leading-relaxed">
               Premium landscaping services that elevate your property. 

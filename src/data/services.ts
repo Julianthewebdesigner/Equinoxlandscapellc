@@ -5,6 +5,7 @@ export type ServiceCard = {
   title: string;
   description: string;
   image: string;
+  imageBase: string;
   slug: string;
   seo: {
     title: string;
@@ -24,6 +25,7 @@ export const services: ServiceCard[] = [
     title: "Landscape Design",
     slug: "landscape-design",
     image: "/images/service-card-section/landscapedesignservicecard.jpeg",
+    imageBase: "/images/service-card-section/optimized/landscapedesignservicecard",
     description:
       "Retaining walls, fence installation, gazebos, and full backyard design solutions that bring the entire outdoor space together.",
     seo: {
@@ -98,6 +100,7 @@ export const services: ServiceCard[] = [
     title: "Landscape Services",
     slug: "landscape-services",
     image: "/images/service-card-section/landscapeservices.jpeg",
+    imageBase: "/images/service-card-section/optimized/landscapeservices",
     description:
       "Cleanups, bark installation, gravel installation, trimming, pruning, and general landscape maintenance to keep properties looking sharp and well cared for.",
     seo: {
@@ -172,6 +175,7 @@ export const services: ServiceCard[] = [
     title: "Pavers",
     slug: "pavers",
     image: "/images/service-card-section/pavers.jpeg",
+    imageBase: "/images/service-card-section/optimized/pavers",
     description:
       "Paver installation for driveways, patios, walkways, and backyard spaces built with durability, structure, and visual appeal.",
     seo: {
@@ -246,6 +250,7 @@ export const services: ServiceCard[] = [
     title: "Turf / Grass Installation",
     slug: "turf-grass-installation",
     image: "/images/service-card-section/turf-grass.jpeg",
+    imageBase: "/images/service-card-section/optimized/turf-grass",
     description:
       "Sod installation and turf installation for clean, fresh, low-maintenance lawn areas that upgrade the look and usability of a property.",
     seo: {

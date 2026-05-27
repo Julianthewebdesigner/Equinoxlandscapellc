@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { services } from "../data/services";
+import Picture from "./Picture";
 
 export default function Services() {
   const [hovered, setHovered] = useState<number | null>(null);
@@ -49,13 +50,22 @@ export default function Services() {
               >
                 {/* Background Image */}
                 <div
-                  className="absolute inset-0 bg-cover bg-center"
+                  className="absolute inset-0 overflow-hidden"
                   style={{
-                    backgroundImage: `url(${service.image})`,
                     transform: isHovered ? "scale(1.07)" : "scale(1.01)",
                     transition: "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
                   }}
-                />
+                >
+                  <Picture
+                    base={service.imageBase}
+                    widths={[480, 800, 1200]}
+                    sizes="(max-width: 768px) 100vw, 30vw"
+                    alt={service.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
                 {/* Overlay */}
                 <div
@@ -162,10 +172,17 @@ export default function Services() {
               key={idx}
               className="relative h-64 rounded-xl overflow-hidden cursor-pointer group"
             >
-              <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                style={{ backgroundImage: `url(${service.image})` }}
-              />
+              <div className="absolute inset-0 overflow-hidden transition-transform duration-700 group-hover:scale-105">
+                <Picture
+                  base={service.imageBase}
+                  widths={[480, 800]}
+                  sizes="100vw"
+                  alt={service.title}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/92 via-black/45 to-transparent" />
               <div className="absolute top-0 left-0 right-0 h-[3px] bg-brand-gold opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 

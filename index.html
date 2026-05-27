@@ -59,8 +59,15 @@
       />
     </noscript>
 
-    <!-- ── Preload hero (LCP) ────────────────────────────────────────── -->
-    <link rel="preload" as="image" href="/images/hero/Equinox-newhero.jpeg" fetchpriority="high" />
+    <!-- ── Preload hero (LCP) — responsive WebP via imagesrcset ─────── -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      imagesrcset="/images/hero/optimized/Equinox-newhero-640.webp 640w, /images/hero/optimized/Equinox-newhero-1024.webp 1024w, /images/hero/optimized/Equinox-newhero-1600.webp 1600w, /images/hero/optimized/Equinox-newhero-1920.webp 1920w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
 
     <!-- ── Structured Data: LocalBusiness ────────────────────────────── -->
     <script type="application/ld+json">
@@ -134,12 +141,38 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
 
-    <!-- ── LeadConnector Chat Widget ─────────────────────────────────── -->
-    <script
-      src="https://widgets.leadconnectorhq.com/loader.js"
-      data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
-      data-widget-id="6a16720bb2d4c061bc553b76"
-      data-source="WEB_USER"
-    ></script>
+    <!-- ── LeadConnector Chat Widget — deferred to keep mobile fast ─── -->
+    <script>
+      (function () {
+        function load() {
+          if (window.__leadconnectorLoaded) return;
+          window.__leadconnectorLoaded = true;
+          var s = document.createElement("script");
+          s.src = "https://widgets.leadconnectorhq.com/loader.js";
+          s.async = true;
+          s.setAttribute(
+            "data-resources-url",
+            "https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+          );
+          s.setAttribute("data-widget-id", "6a16720bb2d4c061bc553b76");
+          s.setAttribute("data-source", "WEB_USER");
+          document.body.appendChild(s);
+        }
+        // Load after first interaction OR ~4s after page becomes idle.
+        var triggers = ["scroll", "touchstart", "mousemove", "keydown", "click"];
+        function once() {
+          triggers.forEach(function (e) {
+            window.removeEventListener(e, once, { passive: true });
+          });
+          load();
+        }
+        triggers.forEach(function (e) {
+          window.addEventListener(e, once, { passive: true, once: true });
+        });
+        window.addEventListener("load", function () {
+          setTimeout(load, 4000);
+        });
+      })();
+    </script>
   </body>
 </html>

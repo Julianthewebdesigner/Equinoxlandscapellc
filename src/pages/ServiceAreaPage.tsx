@@ -6,6 +6,7 @@ import { services } from "../data/services";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import SEOHead from "../components/SEOHead";
+import Picture from "../components/Picture";
 
 const SITE_URL = "https://www.equinoxlandscapellc.com";
 
@@ -94,13 +95,22 @@ export default function ServiceAreaPage() {
       {/* ── Hero ──────────────────────────────────────────────────────────────── */}
       <section className="relative h-[70vh] min-h-[520px] flex items-end overflow-hidden">
         <div className="absolute inset-0">
-          <img
-            src="/images/hero/Equinox-newhero.jpeg"
-            alt={`Landscaping in ${area.city}, ${area.state}`}
-            decoding="async"
-            fetchPriority="high"
-            className="w-full h-full object-cover object-center"
-          />
+          <picture>
+            <source
+              type="image/webp"
+              srcSet="/images/hero/optimized/Equinox-newhero-640.webp 640w, /images/hero/optimized/Equinox-newhero-1024.webp 1024w, /images/hero/optimized/Equinox-newhero-1600.webp 1600w, /images/hero/optimized/Equinox-newhero-1920.webp 1920w"
+              sizes="100vw"
+            />
+            <img
+              src="/images/hero/optimized/Equinox-newhero-1024.jpg"
+              srcSet="/images/hero/optimized/Equinox-newhero-640.jpg 640w, /images/hero/optimized/Equinox-newhero-1024.jpg 1024w, /images/hero/optimized/Equinox-newhero-1600.jpg 1600w, /images/hero/optimized/Equinox-newhero-1920.jpg 1920w"
+              sizes="100vw"
+              alt={`Landscaping in ${area.city}, ${area.state}`}
+              decoding="async"
+              fetchPriority="high"
+              className="w-full h-full object-cover object-center"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/75 to-brand-black/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/40 to-transparent" />
         </div>
@@ -244,9 +254,13 @@ export default function ServiceAreaPage() {
                   to={`/services/${s.slug}`}
                   className="group relative block h-56 rounded-2xl overflow-hidden"
                 >
-                  <img
-                    src={s.image}
+                  <Picture
+                    base={s.imageBase}
+                    widths={[480, 800]}
+                    sizes="(max-width: 640px) 100vw, 33vw"
                     alt={`${s.title} in ${area.city}, WA`}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/40 to-transparent" />
