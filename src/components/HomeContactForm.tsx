@@ -17,7 +17,6 @@ export default function HomeContactForm() {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    phone: "",
     service: "",
     message: "",
   });
@@ -49,7 +48,7 @@ export default function HomeContactForm() {
         formRef.current!
       );
       setSubmitted(true);
-      setForm({ name: "", email: "", phone: "", service: "", message: "" });
+      setForm({ name: "", email: "", service: "", message: "" });
     } catch {
       setError(
         "Something went wrong sending your message. Please try again or call us directly."
@@ -131,35 +130,20 @@ export default function HomeContactForm() {
               onSubmit={handleSubmit}
               className="flex flex-col gap-5"
             >
-              {/* Name + Phone */}
-              <div className="grid sm:grid-cols-2 gap-5">
-                <div className="flex flex-col gap-2">
-                  <label className="text-xs font-semibold text-white/50 uppercase tracking-widest">
-                    Full Name <span className="text-brand-gold">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    value={form.name}
-                    onChange={handleChange}
-                    placeholder="John Smith"
-                    className="bg-brand-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/25 focus:outline-none focus:border-brand-gold/50 focus:bg-brand-black/80 transition-all"
-                  />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label className="text-xs font-semibold text-white/50 uppercase tracking-widest">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={form.phone}
-                    onChange={handleChange}
-                    placeholder="(206) 000-0000"
-                    className="bg-brand-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/25 focus:outline-none focus:border-brand-gold/50 focus:bg-brand-black/80 transition-all"
-                  />
-                </div>
+              {/* Name */}
+              <div className="flex flex-col gap-2">
+                <label className="text-xs font-semibold text-white/50 uppercase tracking-widest">
+                  Full Name <span className="text-brand-gold">*</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  value={form.name}
+                  onChange={handleChange}
+                  placeholder="John Smith"
+                  className="bg-brand-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/25 focus:outline-none focus:border-brand-gold/50 focus:bg-brand-black/80 transition-all"
+                />
               </div>
 
               {/* Email */}
