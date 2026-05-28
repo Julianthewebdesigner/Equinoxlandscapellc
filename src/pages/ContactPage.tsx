@@ -15,7 +15,6 @@ import {
   Zap,
   HomeIcon,
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import SEOHead from "../components/SEOHead";
@@ -48,12 +47,9 @@ const serviceOptions = [
 type FormErrors = Partial<{
   name: string;
   email: string;
-  phone: string;
   message: string;
-  smsConsent: string;
 }>;
 
-const phoneRegex = /^[\d\s()+\-.]{10,}$/;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const contactSchema = {
@@ -133,10 +129,8 @@ export default function ContactPage() {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    phone: "",
     service: "",
     message: "",
-    smsConsent: false,
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
@@ -152,10 +146,8 @@ export default function ContactPage() {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    const { name, value, type } = e.target;
-    const newValue =
-      type === "checkbox" ? (e.target as HTMLInputElement).checked : value;
-    setForm((prev) => ({ ...prev, [name]: newValue }));
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
@@ -167,14 +159,8 @@ export default function ContactPage() {
     if (!form.email.trim()) next.email = "Please enter your email.";
     else if (!emailRegex.test(form.email.trim()))
       next.email = "Please enter a valid email address.";
-    if (!form.phone.trim()) next.phone = "Please enter your phone number.";
-    else if (!phoneRegex.test(form.phone.trim()))
-      next.phone = "Please enter a valid phone number.";
     if (!form.message.trim())
       next.message = "Tell us a little about your project.";
-    if (!form.smsConsent)
-      next.smsConsent =
-        "You must consent to receive SMS messages to submit this form.";
     setErrors(next);
     return Object.keys(next).length === 0;
   };
@@ -195,10 +181,8 @@ export default function ContactPage() {
       setForm({
         name: "",
         email: "",
-        phone: "",
         service: "",
         message: "",
-        smsConsent: false,
       });
       setErrors({});
     } catch {
@@ -368,7 +352,7 @@ export default function ContactPage() {
                     Request Received
                   </h3>
                   <p className="text-white/55 max-w-sm leading-relaxed">
-                    Thanks for reaching out. Julian will personally follow up within 24 hours by phone or text to confirm details and next steps.
+                    Thanks for reaching out. Julian will personally follow up by email within 24 hours to confirm details and next steps.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
@@ -418,79 +402,41 @@ export default function ContactPage() {
                     )}
                   </div>
 
-                  {/* Email + Phone */}
-                  <div className="grid sm:grid-cols-2 gap-5">
-                    <div className="flex flex-col gap-2">
-                      <label
-                        htmlFor="contact-email"
-                        className="text-xs font-semibold text-white/50 uppercase tracking-widest"
+                  {/* Email */}
+                  <div className="flex flex-col gap-2">
+                    <label
+                      htmlFor="contact-email"
+                      className="text-xs font-semibold text-white/50 uppercase tracking-widest"
+                    >
+                      Email <span className="text-brand-gold">*</span>
+                    </label>
+                    <input
+                      id="contact-email"
+                      type="email"
+                      name="email"
+                      autoComplete="email"
+                      inputMode="email"
+                      value={form.email}
+                      onChange={handleChange}
+                      placeholder="you@example.com"
+                      aria-invalid={!!errors.email}
+                      aria-describedby={
+                        errors.email ? "contact-email-error" : undefined
+                      }
+                      className={`bg-brand-black/60 border rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/25 focus:outline-none focus:bg-brand-black/80 transition-all ${
+                        errors.email
+                          ? "border-red-400/60 focus:border-red-400"
+                          : "border-white/10 focus:border-brand-gold/50"
+                      }`}
+                    />
+                    {errors.email && (
+                      <p
+                        id="contact-email-error"
+                        className="text-red-400 text-xs"
                       >
-                        Email <span className="text-brand-gold">*</span>
-                      </label>
-                      <input
-                        id="contact-email"
-                        type="email"
-                        name="email"
-                        autoComplete="email"
-                        inputMode="email"
-                        value={form.email}
-                        onChange={handleChange}
-                        placeholder="you@example.com"
-                        aria-invalid={!!errors.email}
-                        aria-describedby={
-                          errors.email ? "contact-email-error" : undefined
-                        }
-                        className={`bg-brand-black/60 border rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/25 focus:outline-none focus:bg-brand-black/80 transition-all ${
-                          errors.email
-                            ? "border-red-400/60 focus:border-red-400"
-                            : "border-white/10 focus:border-brand-gold/50"
-                        }`}
-                      />
-                      {errors.email && (
-                        <p
-                          id="contact-email-error"
-                          className="text-red-400 text-xs"
-                        >
-                          {errors.email}
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="flex flex-col gap-2">
-                      <label
-                        htmlFor="contact-phone"
-                        className="text-xs font-semibold text-white/50 uppercase tracking-widest"
-                      >
-                        Mobile Phone <span className="text-brand-gold">*</span>
-                      </label>
-                      <input
-                        id="contact-phone"
-                        type="tel"
-                        name="phone"
-                        autoComplete="tel"
-                        inputMode="tel"
-                        value={form.phone}
-                        onChange={handleChange}
-                        placeholder="(206) 555-0123"
-                        aria-invalid={!!errors.phone}
-                        aria-describedby={
-                          errors.phone ? "contact-phone-error" : undefined
-                        }
-                        className={`bg-brand-black/60 border rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/25 focus:outline-none focus:bg-brand-black/80 transition-all ${
-                          errors.phone
-                            ? "border-red-400/60 focus:border-red-400"
-                            : "border-white/10 focus:border-brand-gold/50"
-                        }`}
-                      />
-                      {errors.phone && (
-                        <p
-                          id="contact-phone-error"
-                          className="text-red-400 text-xs"
-                        >
-                          {errors.phone}
-                        </p>
-                      )}
-                    </div>
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
 
                   {/* Service Type */}
@@ -550,63 +496,6 @@ export default function ContactPage() {
                         className="text-red-400 text-xs"
                       >
                         {errors.message}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* SMS Consent */}
-                  <div className="flex flex-col gap-2 mt-1">
-                    <label
-                      htmlFor="contact-sms-consent"
-                      className="flex items-start gap-3 cursor-pointer"
-                    >
-                      <input
-                        id="contact-sms-consent"
-                        type="checkbox"
-                        name="smsConsent"
-                        checked={form.smsConsent}
-                        onChange={handleChange}
-                        aria-invalid={!!errors.smsConsent}
-                        aria-describedby={
-                          errors.smsConsent
-                            ? "contact-sms-consent-error"
-                            : "contact-sms-consent-text"
-                        }
-                        className="mt-1 h-4 w-4 shrink-0 rounded border-white/30 bg-brand-black/60 text-brand-gold focus:ring-brand-gold/40 focus:ring-offset-0 accent-brand-gold cursor-pointer"
-                      />
-                      <span
-                        id="contact-sms-consent-text"
-                        className="text-white/65 text-xs leading-relaxed"
-                      >
-                        By submitting this form, you agree to receive SMS
-                        messages from Equinox Landscape LLC regarding estimates,
-                        scheduling, appointment reminders, and service updates.
-                        Message frequency may vary. Message and data rates may
-                        apply. Reply{" "}
-                        <strong className="text-white">STOP</strong> to opt out.
-                        See our{" "}
-                        <Link
-                          to="/privacy"
-                          className="text-brand-gold hover:text-white underline transition-colors"
-                        >
-                          Privacy Policy
-                        </Link>{" "}
-                        and{" "}
-                        <Link
-                          to="/terms"
-                          className="text-brand-gold hover:text-white underline transition-colors"
-                        >
-                          Terms &amp; Conditions
-                        </Link>
-                        .
-                      </span>
-                    </label>
-                    {errors.smsConsent && (
-                      <p
-                        id="contact-sms-consent-error"
-                        className="text-red-400 text-xs pl-7"
-                      >
-                        {errors.smsConsent}
                       </p>
                     )}
                   </div>
