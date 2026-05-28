@@ -1,4 +1,3 @@
-import { motion } from "motion/react";
 import { Phone, Mail, MapPin, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
 import { services } from "../data/services";
@@ -21,7 +20,7 @@ export default function Footer() {
                 <img
                   src="/images/hero/optimized/Transparent-Equinox-logo-112.png"
                   srcSet="/images/hero/optimized/Transparent-Equinox-logo-112.png 1x, /images/hero/optimized/Transparent-Equinox-logo-224.png 2x"
-                  alt="Equinox Landscape"
+                  alt="Equinox Landscape LLC"
                   width="56"
                   height="56"
                   loading="lazy"
@@ -30,9 +29,21 @@ export default function Footer() {
                 />
               </picture>
             </div>
-            <p className="text-white/60 leading-relaxed">
-              Premium landscaping services that elevate your property. 
-              Grounded in tradition, driven by excellence.
+            <div className="space-y-2">
+              <p className="text-white font-bold text-sm tracking-wide">
+                Equinox Landscape LLC
+              </p>
+              <p className="text-white/55 text-sm leading-relaxed">
+                Seattle, Washington · King County
+              </p>
+              <p className="text-white/55 text-sm leading-relaxed">
+                Licensed &amp; Insured · Locally Owned
+              </p>
+            </div>
+            <p className="text-white/60 leading-relaxed text-sm">
+              Premium landscaping, hardscaping, and exterior services that
+              elevate your property. Grounded in tradition, driven by
+              excellence.
             </p>
             <div className="flex gap-4">
               <a href="https://www.instagram.com/equinoxlandscapellc/" target="_blank" rel="noopener noreferrer" aria-label="Equinox Landscape on Instagram" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-brand-gold hover:text-brand-gold transition-colors">
@@ -81,9 +92,11 @@ export default function Footer() {
             <h4 className="text-brand-gold font-semibold mb-6 uppercase tracking-wider text-sm">Company</h4>
             <ul className="space-y-3">
               <li><a href="/#about" className="text-white/60 hover:text-white transition-colors">About Us</a></li>
-              <li><Link to="/blog" className="text-white/60 hover:text-white transition-colors">Blog & Guides</Link></li>
+              <li><Link to="/blog" className="text-white/60 hover:text-white transition-colors">Blog &amp; Guides</Link></li>
               <li><a href="/#faq" className="text-white/60 hover:text-white transition-colors">FAQ</a></li>
               <li><Link to="/contact" className="text-white/60 hover:text-white transition-colors">Contact</Link></li>
+              <li><Link to="/privacy" className="text-white/60 hover:text-white transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/terms" className="text-white/60 hover:text-white transition-colors">Terms &amp; Conditions</Link></li>
             </ul>
           </div>
 
@@ -95,7 +108,7 @@ export default function Footer() {
                 <Phone size={18} className="text-brand-gold mt-1 shrink-0" />
                 <div>
                   <a href="tel:+12064188749" className="text-white font-medium hover:text-brand-gold transition-colors">(206) 418-8749</a>
-                  <p className="text-white/40 text-sm">Mon - Sat: 8am - 6pm</p>
+                  <p className="text-white/40 text-sm">Mon – Sat: 8am – 6pm</p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
@@ -105,15 +118,34 @@ export default function Footer() {
                   <p className="text-white/40 text-sm">Reply within 24 hours</p>
                 </div>
               </li>
+              <li className="flex items-start gap-3">
+                <MapPin size={18} className="text-brand-gold mt-1 shrink-0" />
+                <div>
+                  <p className="text-white font-medium">Seattle, Washington</p>
+                  <p className="text-white/40 text-sm">Serving King County</p>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
 
-        <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-white/40 text-sm">
-          <p>© {new Date().getFullYear()} Equinox Landscape LLC. All rights reserved.</p>
-          <div className="flex gap-8">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+        {/* SMS compliance footnote */}
+        <div className="pt-8 border-t border-white/5">
+          <p className="text-white/35 text-xs leading-relaxed max-w-4xl">
+            By submitting a form on this website and providing your phone number, you may receive SMS messages from Equinox Landscape LLC regarding estimates, scheduling, appointment reminders, and service updates. Message frequency varies. Message and data rates may apply. Reply <span className="text-white/55 font-semibold">STOP</span> to opt out, or <span className="text-white/55 font-semibold">HELP</span> for help. See our{" "}
+            <Link to="/privacy" className="text-brand-gold hover:text-white transition-colors">Privacy Policy</Link> and{" "}
+            <Link to="/terms" className="text-brand-gold hover:text-white transition-colors">Terms &amp; Conditions</Link>.
+          </p>
+        </div>
+
+        <div className="mt-8 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-white/40 text-sm">
+          <p className="text-center md:text-left">
+            © {new Date().getFullYear()} Equinox Landscape LLC. All rights reserved.
+          </p>
+          <div className="flex flex-wrap gap-x-8 gap-y-2 justify-center">
+            <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-white transition-colors">Terms &amp; Conditions</Link>
+            <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
           </div>
         </div>
       </div>

@@ -7,6 +7,8 @@ const ContactPage = lazy(() => import("./pages/ContactPage"));
 const ServiceAreaPage = lazy(() => import("./pages/ServiceAreaPage"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
+const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
+const TermsPage = lazy(() => import("./pages/TermsPage"));
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -34,6 +36,8 @@ export default function App() {
           <Route path="/service-areas/:city" element={<ServiceAreaPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
+          <Route path="/privacy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

@@ -11,7 +11,11 @@ import {
   Instagram,
   Star,
   Send,
+  ShieldCheck,
+  Zap,
+  HomeIcon,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import SEOHead from "../components/SEOHead";
@@ -34,9 +38,23 @@ const serviceOptions = [
   "Landscape Services / Maintenance",
   "Paver Installation",
   "Turf / Grass Installation",
+  "Pressure Washing",
+  "Yard Cleanup",
+  "Moss Removal",
   "Multiple Services",
   "Not Sure Yet",
 ];
+
+type FormErrors = Partial<{
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+  smsConsent: string;
+}>;
+
+const phoneRegex = /^[\d\s()+\-.]{10,}$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const contactSchema = {
   "@context": "https://schema.org",
@@ -115,9 +133,12 @@ export default function ContactPage() {
   const [form, setForm] = useState({
     name: "",
     email: "",
+    phone: "",
     service: "",
     message: "",
+    smsConsent: false,
   });
+  const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -131,13 +152,38 @@ export default function ContactPage() {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value, type } = e.target;
+    const newValue =
+      type === "checkbox" ? (e.target as HTMLInputElement).checked : value;
+    setForm((prev) => ({ ...prev, [name]: newValue }));
+    if (errors[name as keyof FormErrors]) {
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
+    }
+  };
+
+  const validate = (): boolean => {
+    const next: FormErrors = {};
+    if (!form.name.trim()) next.name = "Please enter your name.";
+    if (!form.email.trim()) next.email = "Please enter your email.";
+    else if (!emailRegex.test(form.email.trim()))
+      next.email = "Please enter a valid email address.";
+    if (!form.phone.trim()) next.phone = "Please enter your phone number.";
+    else if (!phoneRegex.test(form.phone.trim()))
+      next.phone = "Please enter a valid phone number.";
+    if (!form.message.trim())
+      next.message = "Tell us a little about your project.";
+    if (!form.smsConsent)
+      next.smsConsent =
+        "You must consent to receive SMS messages to submit this form.";
+    setErrors(next);
+    return Object.keys(next).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSending(true);
     setError(null);
+    if (!validate()) return;
+    setSending(true);
 
     try {
       await emailjs.sendForm(
@@ -146,10 +192,18 @@ export default function ContactPage() {
         formRef.current!
       );
       setSubmitted(true);
-      setForm({ name: "", email: "", service: "", message: "" });
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: "",
+        smsConsent: false,
+      });
+      setErrors({});
     } catch {
       setError(
-        "Something went wrong sending your message. Please try again or contact us directly."
+        "Something went wrong sending your message. Please try again or call us at (206) 418-8749."
       );
     } finally {
       setSending(false);
@@ -230,6 +284,50 @@ export default function ContactPage() {
         </div>
       </section>
 
+      {/* ── Trust Pillars ────────────────────────────────────────────────────── */}
+      <section className="pb-4">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid sm:grid-cols-3 gap-4">
+            {[
+              {
+                icon: Zap,
+                title: "Fast Response Times",
+                body: "Every inquiry gets a personal reply within 24 hours — usually same day.",
+              },
+              {
+                icon: HomeIcon,
+                title: "Locally Owned",
+                body: "Family-run from Seattle. Julian is on every job site — no middlemen.",
+              },
+              {
+                icon: MapPin,
+                title: "Serving Seattle & Surrounding Areas",
+                body: "Proudly working across Seattle, Kent, Renton, Auburn, and greater King County.",
+              },
+            ].map(({ icon: Icon, title, body }, i) => (
+              <motion.div
+                key={title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 0.5, delay: 0.05 * i }}
+                className="rounded-2xl bg-brand-charcoal/50 border border-white/8 p-6 flex items-start gap-4"
+              >
+                <div className="w-11 h-11 rounded-full bg-brand-gold/10 border border-brand-gold/25 flex items-center justify-center flex-shrink-0">
+                  <Icon size={18} className="text-brand-gold" />
+                </div>
+                <div>
+                  <p className="text-white font-bold text-sm">{title}</p>
+                  <p className="text-white/50 text-xs mt-1 leading-relaxed">
+                    {body}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Main Content ─────────────────────────────────────────────────────── */}
       <section className="py-16 pb-24">
         <div className="max-w-7xl mx-auto px-6">
@@ -260,16 +358,17 @@ export default function ContactPage() {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="flex flex-col items-center justify-center py-16 gap-5 text-center"
+                  role="status"
+                  aria-live="polite"
                 >
                   <div className="w-16 h-16 rounded-full bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center">
                     <CheckCircle2 size={28} className="text-brand-gold" />
                   </div>
                   <h3 className="font-serif text-2xl font-bold uppercase text-white">
-                    Message Sent!
+                    Request Received
                   </h3>
                   <p className="text-white/55 max-w-sm leading-relaxed">
-                    Your request has been sent successfully. Julian will follow
-                    up within 24 hours.
+                    Thanks for reaching out. Julian will personally follow up within 24 hours by phone or text to confirm details and next steps.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
@@ -283,53 +382,134 @@ export default function ContactPage() {
                   ref={formRef}
                   id="contact-form"
                   onSubmit={handleSubmit}
+                  noValidate
                   className="flex flex-col gap-5"
                 >
                   {/* Name */}
                   <div className="flex flex-col gap-2">
-                    <label className="text-xs font-semibold text-white/50 uppercase tracking-widest">
+                    <label
+                      htmlFor="contact-name"
+                      className="text-xs font-semibold text-white/50 uppercase tracking-widest"
+                    >
                       Full Name <span className="text-brand-gold">*</span>
                     </label>
                     <input
+                      id="contact-name"
                       type="text"
                       name="name"
-                      required
+                      autoComplete="name"
                       value={form.name}
                       onChange={handleChange}
                       placeholder="John Smith"
-                      className="bg-brand-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/25 focus:outline-none focus:border-brand-gold/50 focus:bg-brand-black/80 transition-all"
+                      aria-invalid={!!errors.name}
+                      aria-describedby={
+                        errors.name ? "contact-name-error" : undefined
+                      }
+                      className={`bg-brand-black/60 border rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/25 focus:outline-none focus:bg-brand-black/80 transition-all ${
+                        errors.name
+                          ? "border-red-400/60 focus:border-red-400"
+                          : "border-white/10 focus:border-brand-gold/50"
+                      }`}
                     />
+                    {errors.name && (
+                      <p id="contact-name-error" className="text-red-400 text-xs">
+                        {errors.name}
+                      </p>
+                    )}
                   </div>
 
-                  {/* Email */}
-                  <div className="flex flex-col gap-2">
-                    <label className="text-xs font-semibold text-white/50 uppercase tracking-widest">
-                      Email Address <span className="text-brand-gold">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={form.email}
-                      onChange={handleChange}
-                      placeholder="you@example.com"
-                      className="bg-brand-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/25 focus:outline-none focus:border-brand-gold/50 focus:bg-brand-black/80 transition-all"
-                    />
+                  {/* Email + Phone */}
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    <div className="flex flex-col gap-2">
+                      <label
+                        htmlFor="contact-email"
+                        className="text-xs font-semibold text-white/50 uppercase tracking-widest"
+                      >
+                        Email <span className="text-brand-gold">*</span>
+                      </label>
+                      <input
+                        id="contact-email"
+                        type="email"
+                        name="email"
+                        autoComplete="email"
+                        inputMode="email"
+                        value={form.email}
+                        onChange={handleChange}
+                        placeholder="you@example.com"
+                        aria-invalid={!!errors.email}
+                        aria-describedby={
+                          errors.email ? "contact-email-error" : undefined
+                        }
+                        className={`bg-brand-black/60 border rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/25 focus:outline-none focus:bg-brand-black/80 transition-all ${
+                          errors.email
+                            ? "border-red-400/60 focus:border-red-400"
+                            : "border-white/10 focus:border-brand-gold/50"
+                        }`}
+                      />
+                      {errors.email && (
+                        <p
+                          id="contact-email-error"
+                          className="text-red-400 text-xs"
+                        >
+                          {errors.email}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="flex flex-col gap-2">
+                      <label
+                        htmlFor="contact-phone"
+                        className="text-xs font-semibold text-white/50 uppercase tracking-widest"
+                      >
+                        Mobile Phone <span className="text-brand-gold">*</span>
+                      </label>
+                      <input
+                        id="contact-phone"
+                        type="tel"
+                        name="phone"
+                        autoComplete="tel"
+                        inputMode="tel"
+                        value={form.phone}
+                        onChange={handleChange}
+                        placeholder="(206) 555-0123"
+                        aria-invalid={!!errors.phone}
+                        aria-describedby={
+                          errors.phone ? "contact-phone-error" : undefined
+                        }
+                        className={`bg-brand-black/60 border rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/25 focus:outline-none focus:bg-brand-black/80 transition-all ${
+                          errors.phone
+                            ? "border-red-400/60 focus:border-red-400"
+                            : "border-white/10 focus:border-brand-gold/50"
+                        }`}
+                      />
+                      {errors.phone && (
+                        <p
+                          id="contact-phone-error"
+                          className="text-red-400 text-xs"
+                        >
+                          {errors.phone}
+                        </p>
+                      )}
+                    </div>
                   </div>
 
                   {/* Service Type */}
                   <div className="flex flex-col gap-2">
-                    <label className="text-xs font-semibold text-white/50 uppercase tracking-widest">
+                    <label
+                      htmlFor="contact-service"
+                      className="text-xs font-semibold text-white/50 uppercase tracking-widest"
+                    >
                       Service Needed
                     </label>
                     <select
+                      id="contact-service"
                       name="service"
                       value={form.service}
                       onChange={handleChange}
                       className="bg-brand-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-brand-gold/50 focus:bg-brand-black/80 transition-all appearance-none cursor-pointer"
                     >
                       <option value="" className="bg-brand-charcoal text-white/60">
-                        Select a service...
+                        Select a service…
                       </option>
                       {serviceOptions.map((s) => (
                         <option key={s} value={s} className="bg-brand-charcoal text-white">
@@ -341,18 +521,94 @@ export default function ContactPage() {
 
                   {/* Message */}
                   <div className="flex flex-col gap-2">
-                    <label className="text-xs font-semibold text-white/50 uppercase tracking-widest">
+                    <label
+                      htmlFor="contact-message"
+                      className="text-xs font-semibold text-white/50 uppercase tracking-widest"
+                    >
                       Project Details <span className="text-brand-gold">*</span>
                     </label>
                     <textarea
+                      id="contact-message"
                       name="message"
-                      required
                       rows={5}
                       value={form.message}
                       onChange={handleChange}
                       placeholder="Describe your project — what you're looking to do, the size of the area, your timeline, and any other details that would help us give you an accurate estimate."
-                      className="bg-brand-black/60 border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/25 focus:outline-none focus:border-brand-gold/50 focus:bg-brand-black/80 transition-all resize-none leading-relaxed"
+                      aria-invalid={!!errors.message}
+                      aria-describedby={
+                        errors.message ? "contact-message-error" : undefined
+                      }
+                      className={`bg-brand-black/60 border rounded-xl px-4 py-3.5 text-white text-sm placeholder-white/25 focus:outline-none focus:bg-brand-black/80 transition-all resize-none leading-relaxed ${
+                        errors.message
+                          ? "border-red-400/60 focus:border-red-400"
+                          : "border-white/10 focus:border-brand-gold/50"
+                      }`}
                     />
+                    {errors.message && (
+                      <p
+                        id="contact-message-error"
+                        className="text-red-400 text-xs"
+                      >
+                        {errors.message}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* SMS Consent */}
+                  <div className="flex flex-col gap-2 mt-1">
+                    <label
+                      htmlFor="contact-sms-consent"
+                      className="flex items-start gap-3 cursor-pointer"
+                    >
+                      <input
+                        id="contact-sms-consent"
+                        type="checkbox"
+                        name="smsConsent"
+                        checked={form.smsConsent}
+                        onChange={handleChange}
+                        aria-invalid={!!errors.smsConsent}
+                        aria-describedby={
+                          errors.smsConsent
+                            ? "contact-sms-consent-error"
+                            : "contact-sms-consent-text"
+                        }
+                        className="mt-1 h-4 w-4 shrink-0 rounded border-white/30 bg-brand-black/60 text-brand-gold focus:ring-brand-gold/40 focus:ring-offset-0 accent-brand-gold cursor-pointer"
+                      />
+                      <span
+                        id="contact-sms-consent-text"
+                        className="text-white/65 text-xs leading-relaxed"
+                      >
+                        By submitting this form, you agree to receive SMS
+                        messages from Equinox Landscape LLC regarding estimates,
+                        scheduling, appointment reminders, and service updates.
+                        Message frequency may vary. Message and data rates may
+                        apply. Reply{" "}
+                        <strong className="text-white">STOP</strong> to opt out.
+                        See our{" "}
+                        <Link
+                          to="/privacy"
+                          className="text-brand-gold hover:text-white underline transition-colors"
+                        >
+                          Privacy Policy
+                        </Link>{" "}
+                        and{" "}
+                        <Link
+                          to="/terms"
+                          className="text-brand-gold hover:text-white underline transition-colors"
+                        >
+                          Terms &amp; Conditions
+                        </Link>
+                        .
+                      </span>
+                    </label>
+                    {errors.smsConsent && (
+                      <p
+                        id="contact-sms-consent-error"
+                        className="text-red-400 text-xs pl-7"
+                      >
+                        {errors.smsConsent}
+                      </p>
+                    )}
                   </div>
 
                   {/* Error message */}
@@ -370,12 +626,24 @@ export default function ContactPage() {
                     whileTap={sending ? {} : { scale: 0.98 }}
                     className="w-full flex items-center justify-center gap-3 bg-brand-gold text-brand-black font-bold py-4 rounded-xl text-sm tracking-widest uppercase shadow-[0_0_25px_rgba(201,168,76,0.25)] hover:shadow-[0_0_45px_rgba(201,168,76,0.45)] transition-all mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    {sending ? "Sending…" : (<>Send My Request <Send size={15} /></>)}
+                    {sending ? (
+                      <>
+                        <span className="w-4 h-4 rounded-full border-2 border-brand-black/30 border-t-brand-black animate-spin" />
+                        Sending…
+                      </>
+                    ) : (
+                      <>
+                        Send My Request <Send size={15} />
+                      </>
+                    )}
                   </motion.button>
 
-                  <p className="text-center text-white/25 text-xs leading-relaxed">
-                    We respond within 24 hours.
-                  </p>
+                  <div className="flex items-center justify-center gap-2 text-white/35 text-xs">
+                    <ShieldCheck size={12} className="text-brand-gold/70" />
+                    <span>
+                      Your information is kept private. No spam — ever.
+                    </span>
+                  </div>
                 </form>
               )}
             </motion.div>
